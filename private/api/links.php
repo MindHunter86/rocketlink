@@ -2,9 +2,6 @@
 
 declare(strict_types=1);
 
-require_once(__DIR__ . '/utils.php');
-require_once(__DIR__ . '/../utils/session.php');
-
 require_once(__DIR__ . '../../../config/shorten.php');
 
 const API_LINK_DESTINATION = 'destination';
@@ -15,12 +12,12 @@ function api_get_link(array $params = []): void
     $id = post_param_validation($id);
 
     if (empty($id)) {
-        json_response_error('link not found', 404);
+        json_response_error('link not found', 404, 'recevied id is not valid');
     }
 
     $res = db_one('SELECT id,owner where shorten_id=?', [$id]);
     if (!$res) {
-        json_response_error('requested link was not found', 404);
+        json_response_error('requested link not found', 404);
     }
 
     if (!session_is_authenticated() || !session_is_authorized_by_id($res['owner'])) {

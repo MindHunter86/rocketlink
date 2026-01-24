@@ -112,6 +112,65 @@ function ensure_schema(): void
             ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci
         ',
     );
+
+    // payments
+    pdo()->exec(
+        '
+            CREATE TABLE `payments` (
+                `id` int(11) NOT NULL AUTO_INCREMENT,
+                `owner` int(11) NOT NULL,
+                `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+                `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+                PRIMARY KEY (`id`),
+                KEY `owner` (`owner`),
+                CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `accounts` (`id`)
+            ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci
+        ',
+    );
+
+    // products
+    pdo()->exec(
+        '
+            CREATE TABLE `products` (
+                `id` int(11) NOT NULL AUTO_INCREMENT,
+                `name` varchar(255) NOT NULL,
+                `description` varchar(255) NOT NULL,
+                `price` int(11) NOT NULL,
+                `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+                `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+                PRIMARY KEY (`id`)
+            ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci
+        ',
+    );
+
+    // create test products
+    pdo()->exec(
+        '
+            INSERT INTO products (`name`, `description`, `price`)
+            VALUES ("Free Source", "", "1");
+            INSERT INTO products (`name`, `description`, `price`)
+            VALUES ("Team", "", "2");
+            INSERT INTO products (`name`, `description`, `price`)
+            VALUES ("Team Pro", "", "3");
+            INSERT INTO products (`name`, `description`, `price`)
+            VALUES ("Enterprise", "", "4");
+        ',
+    );
+
+    // orders
+    pdo()->exec(
+        '
+            CREATE TABLE `orders` (
+                `id` int(11) NOT NULL AUTO_INCREMENT,
+                `owner` int(11) NOT NULL,
+                `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+                `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+                PRIMARY KEY (`id`),
+                KEY `owner` (`owner`),
+                CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `accounts` (`id`)
+            ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci
+        ',
+    );
 }
                 // KEY `owner` (`owner`),
                 // CONSTRAINT `links_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `accounts` (`id`)

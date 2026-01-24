@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-function api_get_payment(array $params = []): void
+function api_get_order(array $params = []): void
 {
     $id = $params['id'] ?? '';
     $id = post_param_validation($id);
@@ -15,13 +15,13 @@ function api_get_payment(array $params = []): void
         json_response_error('authentication required for looking for order', 403);
     }
 
-    $res = db_one('SELECT payment WHERE id=?', [$id]);
+    $res = db_one('SELECT owner WHERE id=?', [$id]);
     if (!$res) {
-        json_response_error('payment not found', 404, 'received id could not be found in db');
+        json_response_error('order not found', 404, 'recevied id could not be found in db');
     }
 
     if (!session_is_authorized_by_id($res['owner'])) {
-        json_response_error('payment not found', 404, 'insufficient permissions for looking this payment');
+        json_response_error('order not found', 404, 'insufficient permissions for looking for order');
     }
 
     json_response([

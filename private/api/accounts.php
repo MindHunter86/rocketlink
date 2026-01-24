@@ -2,9 +2,6 @@
 
 declare(strict_types=1);
 
-require_once(__DIR__ . '/utils.php');
-require_once(__DIR__ . '/../utils/session.php');
-
 const API_POST_AUTH_USERNAME = 'username';
 const API_POST_AUTH_PASSWORD = 'password';
 
@@ -15,9 +12,7 @@ const API_POST_REGISTER_EULA = 'eula';
 
 function api_account_auth_login(): void
 {
-    if (session_is_authenticated()) {
-        session_deauthenticate();
-    }
+    if (session_is_authenticated()) session_deauthenticate();
 
     $username = post_param_validation(API_POST_AUTH_USERNAME);
     $password = post_param_validation(API_POST_AUTH_PASSWORD);
@@ -42,6 +37,7 @@ function api_account_auth_login(): void
     $_SESSION[SESSION_ACCOUNT][SESSION_ACCOUNT_USERID] = $res['id'];
     $_SESSION[SESSION_ACCOUNT][SESSION_ACCOUNT_USERNAME] = $username;
     $_SESSION[SESSION_ACCOUNT][SESSION_ACCOUNT_LOGGEDIN] = true;
+    $_SESSION[SESSION_ACCOUNT][SESSION_ACCOUNT_ISANONYM] = false;
     json_response(['status' => 'ok'], 204);
 }
 
