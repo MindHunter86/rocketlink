@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="application-name" content="Saeko Anti-DDoS guardian">
+  <meta name="author" content="mnt@anilibria.top">
+  <meta name="description" content="OpenSource Anti-DDoS and Anti-AI solution by AniLibria team">
+
+  <title>Saeko Configuration Page</title>
+
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+
+  <!-- CSS Reset -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+
+  <!-- Milligram CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+
+  <link href="/public/favicon.ico" rel="shortcut icon">
+  <link href="/public/favicon.svg" rel="icon" type="image/svg+xml" sizes="any">
+  <link href="/public/safari-pinned-tab.svg" rel="mask-icon" type="image/svg+xml">
+  <link href="/public/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+  <link href="/public/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
+  <link href="/public/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
+  <link href="/public/favicon-96x96.png" rel="icon" type="image/png" sizes="96x96">
+
+  <script defer src="../src/cbcprj.mjs"></script>
+  <!-- <script defer type="module" src="/src/settings.mjs"></script> -->
+
+  <style>
+
+    body {
+      color: #E8E9F1;
+      text-rendering: optimizeLegibility;
+/*
+      background-image: url(../public/img/bg/6221903.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center; */
+
+    color: var(--text);
+
+    /* 1) локально усиливаем затемнение в зоне “героя” (центр/верх)
+      2) равномерное мягкое затемнение всей картинки
+      3) сама картинка */
+  </style>
+</head>
+
+<body>
+  <section class="navigation w-full">
+    <nav>
+      <ul>
+        <li><strong><a href="#">prices</a></strong></li>
+        <li><strong><a href="#">about</a></strong></li>
+        <li><strong><a href="#">github</a></strong></li>
+        <li><strong><a href="#">login</a></strong></li>
+        <li><strong><a href="#">---</a></strong></li>
+        <li><strong><a href="#" id="debug_login-page">login page</a></strong></li>
+      </ul>
+    </nav>
+  </section>
+  <main class="container">
+    <div id="page_main-page" class="row row-no-padding row-fullwindow row-column">
+      <div class="column column-60 column-offset-20">
+        <h1 class="title">project name</h1>
+        <h2 class="description">shoten your links before sharing</h2>
+        <h3 class="description"><strong>minimaze. share. analyze.</strong></h3>
+      </div>
+      <div class="column column-60 column-offset-20">
+        <form class="shorten shorten-nomarging" id="shorten-form" style="transition: padding-top 1s;">
+          <label>Paste link to be shorten for</label>
+          <input type="text" required>
+          <a class="button button-small" id="test-shorten-button">Minimaze</a>
+        </form>
+      </div>
+      <div class="column column-60 column-offset-20">
+        <div class="shorten-cascade" >
+          <article class="article-card article-card--accent">
+            <p class="muted">test text</p>
+            Your link <a href="#">https://t.bkcp.link/xyz</a><br>
+            For analytics you need registration here XXX.
+
+            Also you can get QR code here XXX.
+          </article>
+        </div>
+      </div>
+      <div class="column column-60 column-offset-20">
+        <div class="shorten-cascade">
+          <article class="article-card article-card--accent">
+            <p class="muted">test text</p>
+            Your link <a href="#">https://t.bkcp.link/xyz</a><br>
+            For analytics you need registration here XXX.
+
+            Also you can get QR code here XXX.
+          </article>
+        </div>
+      </div>
+    </div>
+    <div id="page_login-page" class="row row-no-padding row-center row-fullwindow disabled">
+      <div class="column column-50"></div>
+      <div class="column column-50">
+        <h1>Sign in / Sign up</h1>
+        <p></p>
+        <form>
+          <input type="text">
+        </form>
+      </div>
+    </div>
+    <!-- <div class="row row-no-padding row-center">
+      <div class="column column-50 column-offset-50">
+        <footer>
+          It's footer
+        </footer>
+      </div>
+    </div> -->
+  </main>
+  <noscript>
+    <p>
+      Sadly, you <strong>must enable JavaScript</strong> to get past this challenge. This is required because AI companies
+      have changed the social contract around how website hosting works.
+    </p>
+  </noscript>
+</body>
+
+</html>

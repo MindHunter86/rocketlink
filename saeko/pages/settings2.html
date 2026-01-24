@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="application-name" content="Saeko Anti-DDoS guardian">
+  <meta name="author" content="mnt@anilibria.top">
+  <meta name="description" content="OpenSource Anti-DDoS and Anti-AI solution by AniLibria team">
+
+  <title>Saeko Configuration Page</title>
+
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+
+  <!-- CSS Reset -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+
+  <!-- Milligram CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+
+  <link href="/public/favicon.ico" rel="shortcut icon">
+  <link href="/public/favicon.svg" rel="icon" type="image/svg+xml" sizes="any">
+  <link href="/public/safari-pinned-tab.svg" rel="mask-icon" type="image/svg+xml">
+  <link href="/public/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+  <link href="/public/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
+  <link href="/public/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
+  <link href="/public/favicon-96x96.png" rel="icon" type="image/png" sizes="96x96">
+
+  <!-- Dynamic head data by qtpl -->
+  <!-- Sentry && pre-fetch with pre-connect -->
+  <qtpl-head></qtpl-head>
+
+  <script defer type="module" src="/src/settings.mjs"></script>
+
+  <style>
+    body {
+      color: #E8E9F1;
+      text-rendering: optimizeLegibility;
+
+      background-image: linear-gradient(180deg, #23203A 0%, #1A172B 100%),
+        url(../public/img/bg/9735877.jpg);
+      background-repeat: no-repeat, no-repeat;
+      background-size: 50% 100%, cover;
+      background-position: right top, center;
+    }
+
+    footer {
+      text-align: center;
+      margin: 0 1vw;
+      font-size: 0.9em;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    footer a {
+      color: gainsboro;
+    }
+
+    label {
+      padding-top: .6rem;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+    .details {
+      text-align: center;
+    }
+
+    .row-container {
+      min-height: 100vh;
+      max-width: 100vw;
+      margin: 0;
+    }
+
+    /* milligram - Extending The Inheritances */
+    input {
+      color: rgba(232,233,241,.72);
+    }
+
+    /* Fewer than mobile screen 960 */
+    @media (max-width: 60.0rem) {
+      body {
+        background-size: 100% 100%, cover;
+      }
+      body > .row > .column:nth-child(1) {
+        display: none;
+      }
+      .u-max60-center {
+        margin: auto 0;
+      }
+
+      .container {
+        padding: 0;
+      }
+      .row {
+        flex-direction: column; /* for 60rem */
+      }
+      .row .column {
+        margin-bottom: auto;
+        padding: 0;
+      }
+      .row .column.column-50 {
+        flex: 0 0 60%; max-width: 60%;
+      }
+      form .row {
+        align-items: center;
+        text-align: center;
+      }
+      form .row .column.column-40,
+      form .row .column.column-50 {
+        flex: 0 0 100%; max-width: 100%;
+      }
+      form .row .column.column-offset-10 {
+        margin: auto;
+      }
+
+      h1 {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        hyphens: auto;
+      }
+    }
+
+    /* Larger than mobile screen 640 */
+    @media (min-width: 40.0rem) { }
+
+    /* Larger than tablet screeno 1280 */
+    @media (min-width: 80.0rem) {
+      body > .row > .column:nth-child(2) {
+        max-width: 40vw;
+        margin: auto;
+      }
+    }
+
+    /* Larger than desktop screen 1920 */
+    @media (min-width: 120.0rem) { }
+  </style>
+</head>
+
+<body>
+    <div class="row row-center row-container">
+      <div class="column column-50 text-center">
+        <h1>Some testing zone</h1>
+        <p>yeah</p>
+      </div>
+      <div class="column column-50 u-max60-center">
+        <div class="details">
+          <h1>Configuration Page</h1>
+          <p>
+            Configuration page for Saeko setup<br>
+            Be careful with production environments!
+          </p>
+        </div>
+        <form>
+          <fieldset>
+            <div class="container">
+              <!-- <div class="clearfix">
+                <label class="float-left" for="AnalyticsAnalyzeInterval">AnalyticsAnalyzeInterval:</label>
+                <input class="float-right" type="text" name="AnalyticsAnalyzeInterval" value="10s" >
+              </div> -->
+              <div class="row">
+                <div class="column column-40">
+                  <label for="AnalyticsAnalyzeInterval">AnalyticsAnalyzeInterval:</label>
+                </div>
+                <div class="column column-offset-10 column-50">
+                  <input type="text" name="AnalyticsAnalyzeInterval" value="10s" >
+                </div>
+              </div>
+              <div class="row">
+                <div class="column column-40">
+                  <label for="AnalyticsAnalyzeInterval3">AnalyticsAnalyzeInterval3:</label>
+                </div>
+                <div class="column column-offset-10 column-50">
+                  <input type="text" name="AnalyticsAnalyzeInterval3" value="10s" >
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+        <p id="status"></p>
+        <footer>
+          <p>
+            <qtpl-data></qtpl-data>
+            <span id="supportinfo">
+              Saeko &amp; AniLibria Support Team : <a href="https://t.me/Libria911Bot"><strong>Telegram</strong></a>
+            </span>
+          </p>
+        </footer>
+      </div>
+    </div>
+  <noscript>
+    <p>
+      Sadly, you <strong>must enable JavaScript</strong> to get past this challenge. This is required because AI companies
+      have changed the social contract around how website hosting works.
+    </p>
+  </noscript>
+</body>
+
+</html>

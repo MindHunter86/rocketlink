@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="application-name" content="Saeko Anti-DDoS guardian">
+  <meta name="author" content="mnt@anilibria.top">
+  <meta name="description" content="OpenSource Anti-DDoS and Anti-AI solution by AniLibria team">
+
+  <title>Saeko Configuration Page</title>
+
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+
+  <!-- CSS Reset -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+
+  <!-- Milligram CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+
+  <link href="/public/favicon.ico" rel="shortcut icon">
+  <link href="/public/favicon.svg" rel="icon" type="image/svg+xml" sizes="any">
+  <link href="/public/safari-pinned-tab.svg" rel="mask-icon" type="image/svg+xml">
+  <link href="/public/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+  <link href="/public/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
+  <link href="/public/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
+  <link href="/public/favicon-96x96.png" rel="icon" type="image/png" sizes="96x96">
+
+  <script defer src="../src/cbcprj.mjs"></script>
+  <!-- <script defer type="module" src="/src/settings.mjs"></script> -->
+
+  <style>
+:root{
+  /* затемнение картинки (можно крутить альфу) */
+  --scrim: rgba(10, 12, 16, .2);
+  --scrim-strong: rgba(10, 12, 16, .4);
+
+  /* текст */
+  --text: rgba(245, 247, 252, .92);
+  --muted: rgba(245, 247, 252, .70);
+
+  /* акценты */
+  --accent: #FFB777;       /* тёплый, под деревья */
+  --accent-2: #FFE3A1;     /* под заголовки */
+
+  /* поверхности (блоки под текст) */
+  --surface: rgba(18, 20, 26, .62);        /* основной фон карточки */
+  --surface-2: rgba(18, 20, 26, .46);      /* альтернативный/вторичный */
+  --surface-border: rgba(245,247,252,.12); /* тонкая обводка */
+  --shadow: 0 14px 50px rgba(0,0,0,.38);
+
+  /* заголовки (тёплый, под поля/солнце) */
+  --h1: #FFE3A1;
+
+  /* ссылки (тёплые, чтобы НЕ сливаться с небом) */
+  --link: #FFB777;
+  --link-hover: #FF9A4D;
+  --link-visited: #FCA5A5;
+
+  /* инпуты (на фоне картинки) */
+  --input-bg: rgba(255,255,255,.08);
+  --input-border: rgba(245,247,252,.22);
+  --input-border-hover: rgba(245,247,252,.38);
+  --placeholder: rgba(245,247,252,.48);
+  --focus: rgba(255,183,119,.28);
+}
+
+    body {
+      color: #E8E9F1;
+      text-rendering: optimizeLegibility;
+/*
+      background-image: url(../public/img/bg/6221903.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center; */
+
+    color: var(--text);
+
+    /* 1) локально усиливаем затемнение в зоне “героя” (центр/верх)
+      2) равномерное мягкое затемнение всей картинки
+      3) сама картинка */
+    background:
+      radial-gradient(800px 520px at 50% 22%, var(--scrim-strong), rgba(10,12,16,0) 70%),
+      linear-gradient(0deg, var(--scrim), var(--scrim)),
+      url("../public/img/bg/6221903.jpg") center / cover no-repeat;
+    }
+
+    .row-center {
+      margin: 0;
+      justify-content: center;
+    }
+    .row-fullwindow {
+      min-height: 100vh;
+      max-width: 100vw;
+    }
+    .row-column {
+      flex-direction: column;
+    }
+
+    input[type="color"], input[type="date"], input[type="datetime"],
+    input[type="datetime-local"], input[type="email"], input[type="month"],
+    input[type="number"], input[type="password"], input[type="search"],
+    input[type="tel"], input[type="text"], input[type="url"], input[type="week"],
+    input:not([type]), textarea, select {
+      background-color: white;
+    }
+
+    .title {
+      font-size: 10rem;
+      text-align: center;
+      
+      padding-top: 4rem;
+    }
+    .description {
+      font-size: 4rem;
+      text-align: center;
+      line-height: 2rem;
+
+      color: var(--muted);
+    }
+
+    .shorten {
+      padding-top: 10rem;
+    }
+    .shorten-cascade {
+      padding-top: 0.5rem;
+    }
+    .shorten-nomarging {
+      margin-bottom: 0;
+    }
+
+    /* Fewer than mobile screen 960 */
+    @media (max-width: 60.0rem) { }
+
+    /* Larger than mobile screen 640 */
+    @media (min-width: 40.0rem) { }
+
+    /* Larger than tablet screeno 1280 */
+    @media (min-width: 80.0rem) { }
+
+    /* Larger than desktop screen 1920 */
+    @media (min-width: 120.0rem) { }
+
+    /* utilities */
+    .min-h-screen {
+      min-height: 100vh;
+    }
+    .w-full {
+      width: 100%;
+    }
+    .navigation {
+      position: relative;
+    }
+
+    .navigation nav {
+      position: absolute;
+      top: calc(.8 * 6rem);
+      right: 3rem;
+      z-index: 10;
+    }
+    .navigation nav ul {
+      list-style: none;
+      line-height: 2rem;
+      font-size: 2rem;
+    }
+
+    .disabled {
+      display: none;
+    }
+
+    .button-small {
+      font-size: .8rem;
+      height: 2.8rem;
+      line-height: 2.8rem;
+      padding: 0 1.5rem;
+    }
+
+h1{
+  color: var(--h1);
+  margin: 0 0 .6em;
+}
+a{
+  color: var(--link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+a:hover{ color: var(--link-hover); }
+a:focus-visible{
+  outline: 2px solid rgba(255,183,119,.60);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.article-card{
+  max-width: 760px;
+  padding: 20px 22px;
+  border-radius: 16px;
+
+  background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--shadow);
+
+  backdrop-filter: blur(8px);        /* “glass”, если поддерживается */
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.article-card--accent{
+  position: relative;
+}
+.article-card--accent::before{
+  content:"";
+  position:absolute;
+  left: 10px;
+  top: 12px;
+  bottom: 12px;
+  width: 3px;
+  border-radius: 99px;
+  background: rgba(255,183,119,.75);
+}
+
+.article-card h1,
+.article-card h2,
+.article-card h3{
+  margin: 0 0 10px;
+  color: var(--accent-2);
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+.article-card p,
+.article-card article,
+.article-card .text{
+  margin: 0;
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.article-card .muted{
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.article-card a{
+  color: var(--accent);
+  text-underline-offset: 3px;
+}
+.article-card a:hover{
+  color: #FF9A4D;
+}
+
+  </style>
+</head>
+
+<body>
+  <section class="navigation w-full">
+    <nav>
+      <ul>
+        <li><strong><a href="#">prices</a></strong></li>
+        <li><strong><a href="#">about</a></strong></li>
+        <li><strong><a href="#">github</a></strong></li>
+        <li><strong><a href="#">login</a></strong></li>
+        <li><strong><a href="#">---</a></strong></li>
+        <li><strong><a href="#" id="debug_login-page">login page</a></strong></li>
+      </ul>
+    </nav>
+  </section>
+  <main class="container">
+    <div id="page_main-page" class="row row-no-padding row-fullwindow row-column">
+      <div class="column column-60 column-offset-20">
+        <h1 class="title">project name</h1>
+        <h2 class="description">shoten your links before sharing</h2>
+        <h3 class="description"><strong>minimaze. share. analyze.</strong></h3>
+      </div>
+      <div class="column column-60 column-offset-20">
+        <form class="shorten shorten-nomarging" id="shorten-form" style="transition: padding-top 1s;">
+          <label>Paste link to be shorten for</label>
+          <input type="text" required>
+          <a class="button button-small" id="test-shorten-button">Minimaze</a>
+        </form>
+      </div>
+      <div class="column column-60 column-offset-20">
+        <div class="shorten-cascade" >
+          <article class="article-card article-card--accent">
+            <p class="muted">test text</p>
+            Your link <a href="#">https://t.bkcp.link/xyz</a><br>
+            For analytics you need registration here XXX.
+
+            Also you can get QR code here XXX.
+          </article>
+        </div>
+      </div>
+      <div class="column column-60 column-offset-20">
+        <div class="shorten-cascade">
+          <article class="article-card article-card--accent">
+            <p class="muted">test text</p>
+            Your link <a href="#">https://t.bkcp.link/xyz</a><br>
+            For analytics you need registration here XXX.
+
+            Also you can get QR code here XXX.
+          </article>
+        </div>
+      </div>
+    </div>
+    <div id="page_login-page" class="row row-no-padding row-center row-fullwindow disabled">
+      <div class="column column-50"></div>
+      <div class="column column-50">
+        <h1>Sign in / Sign up</h1>
+        <p></p>
+        <form>
+          <input type="text">
+        </form>
+      </div>
+    </div>
+    <!-- <div class="row row-no-padding row-center">
+      <div class="column column-50 column-offset-50">
+        <footer>
+          It's footer
+        </footer>
+      </div>
+    </div> -->
+  </main>
+  <noscript>
+    <p>
+      Sadly, you <strong>must enable JavaScript</strong> to get past this challenge. This is required because AI companies
+      have changed the social contract around how website hosting works.
+    </p>
+  </noscript>
+</body>
+
+</html>

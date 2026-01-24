@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="application-name" content="Saeko Anti-DDoS guardian">
+  <meta name="author" content="mnt@anilibria.top">
+  <meta name="description" content="OpenSource Anti-DDoS and Anti-AI solution by AniLibria team">
+
+  <title>Saeko Configuration Page</title>
+
+  <link href="/public/favicon.ico" rel="shortcut icon">
+  <link href="/public/favicon.svg" rel="icon" type="image/svg+xml" sizes="any">
+  <link href="/public/safari-pinned-tab.svg" rel="mask-icon" type="image/svg+xml">
+  <link href="/public/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+  <link href="/public/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
+  <link href="/public/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
+  <link href="/public/favicon-96x96.png" rel="icon" type="image/png" sizes="96x96">
+
+  <!-- Dynamic head data by qtpl -->
+  <!-- Sentry && pre-fetch with pre-connect -->
+  <qtpl-head></qtpl-head>
+
+  <script defer type="module" src="/src/settings.mjs"></script>
+
+  <style>
+    html,
+    body {
+      min-height: 100vh; /* 600px height fix */
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+
+      color: whitesmoke;
+      background-color: indigo;
+    }
+
+    main {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      text-align: center;
+      padding: 15px;
+      max-width: 35vw;
+      min-width: 330px;
+
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    main p {
+      margin: 10px;
+    }
+
+    table {
+      margin: auto;
+      max-width: 100%;
+      table-layout: fixed;
+      padding: 10px 0;
+    }
+
+    table th,
+    table td {
+      padding: 5px 1vw;
+      box-sizing: border-box;
+    }
+
+    table th:nth-child(1),
+    table td:nth-child(1) {
+      text-align: left;
+      width: 55%;
+    }
+
+    table th:nth-child(2),
+    table td:nth-child(2) {
+      width: 45%;
+    }
+
+    table td input {
+      width: 100%;
+      min-width: 100px;
+      padding: 2px 5px;
+      border: 0;
+      border-radius: 5px;
+
+      cursor: text;
+      transition: .3s;
+      box-sizing: border-box;
+    }
+
+    table td input:focus {
+      outline: none;
+    }
+
+    table td input:focus,
+    .switch input:focus + .slider {
+      box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.4);
+    }
+
+    footer {
+      text-align: center;
+      margin: 0 1vw;
+      font-size: 0.9em;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    footer a {
+      color: gainsboro;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 42px;
+      height: 20px;
+    }
+
+    /* default checkbox remove */
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      inset: 0;               /* top/right/bottom/left: 0 */
+      cursor: pointer;
+      background-color: #ccc;
+      transition: .3s;
+      border-radius: 999px;
+    }
+
+    /* circle inside slider */
+    .slider::before {
+      content: "";
+      position: absolute;
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      top: 2px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0,0,0,.3);
+    }
+
+    /* "on" state */
+    .switch input:checked + .slider {
+      background-color: #4caf50;
+    }
+
+    .switch input:checked + .slider::before {
+      transform: translateX(20px);
+    }
+
+    /* :focus for slider can be found above */
+
+    @media (min-width: 1440px) {
+      main {
+        max-width: 512px;
+        font-size: 120%;
+      }
+    }
+
+    @media (max-width: 980px) {
+      main {
+        max-width: 50vw;
+      }
+    }
+
+    @media (max-width: 660px) {
+      main {
+        max-width: 75vw;
+      }
+    }
+
+    @media (max-width: 400px) {
+      main {
+        max-width: 90vw;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h2>Configuration Page</h2>
+    <p>
+      Configuration page for Saeko setup<br>
+      Be careful with production environments!
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <qtpl-data></qtpl-data>
+      </tbody>
+    </table>
+    <p id="status"></p>
+    <footer>
+      <p>
+        <qtpl-data></qtpl-data>
+        <span id="supportinfo">
+          Saeko &amp; AniLibria Support Team : <a href="https://t.me/Libria911Bot"><strong>Telegram</strong></a>
+        </span>
+      </p>
+    </footer>
+    <noscript>
+      <p>
+        Sadly, you <strong>must enable JavaScript</strong> to get past this challenge. This is required because AI companies
+        have changed the social contract around how website hosting works.
+      </p>
+    </noscript>
+  </main>
+</body>
+
+</html>

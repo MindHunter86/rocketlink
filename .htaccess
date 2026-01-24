@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# serving static content
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# else route to index.php 
+RewriteRule ^ index.php [L,QSA]
