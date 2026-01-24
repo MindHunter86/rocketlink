@@ -3,19 +3,8 @@
 declare(strict_types=1);
 
 require_once(__DIR__ . '/utils/database.php');
+require_once(__DIR__ . '/api/api.php');
 
-function api_ping(): void
-{
-    $_SESSION['ping_count'] = ($_SESSION['ping_count'] ?? 0) + 1;
-
-    db_test();
-
-    json_response([
-        'ok' => true,
-        'time' => time(),
-        'ping_count' => $_SESSION['ping_count'],
-    ]);
-}
 
 function api_items_list(): void
 {
@@ -37,5 +26,3 @@ function api_items_create(): void
 
     json_response(['ok' => true, 'id' => $id]);
 }
-
-require_once(__DIR__ . '/api/api.php');

@@ -2,20 +2,16 @@
 
 declare(strict_types=1);
 
-require_once(__DIR__ . '/private/init.php');
-require_once(__DIR__ . '/config/database.mysql.php');
-require_once(__DIR__ . '/private/helpers.php');
-
-// phpinfo();
+require_once(__DIR__ . '/private/utils.php');
 
 $path = request_path();
 
 if (str_starts_with($path, '/api/')) {
-    require_once(__DIR__ . '/private/apiv2.php');
+    require_once(__DIR__ . '/private/api.php');
     exit;
 }
 
-// Иначе отдаём одну HTML-страницу (SPA)
+// fallback page
 header('Content-Type: text/html; charset=utf-8');
 ?>
 <!doctype html>
