@@ -10,6 +10,20 @@ $path   = request_path();
 $apiPath = substr($path, 4); // убираем "/api"
 $apiPath = $apiPath === '' ? '/' : $apiPath;
 
+function data_path(string $relative): string
+{
+    // data/ лежит на уровне project/data
+    return dirname(__DIR__) . '/data/' . ltrim($relative, '/');
+}
+
+function request_json(): array
+{
+    $raw = file_get_contents('php://input');
+    if (!is_string($raw) || $raw === '') return [];
+    $data = json_decode($raw, true);
+    return is_array($data) ? $data : [];
+}
+
 $file = data_path('items.json');
 
 function storage_read(string $file): array

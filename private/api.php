@@ -17,7 +17,7 @@ $routes = [
     'GET' => [
         // internal routers
         '/ping'  => 'api_ping',
-        '/accounts/users/debug/session' => 'api_account_session_debug',
+        '/debug/session' => 'api_debug_session',
 
         // account users subrouter
         '/accounts/users/payments' => 'api_account_payments',
@@ -54,6 +54,7 @@ $routes = [
 
         // cart subrouter
         '/cart' => 'api_cart_post',
+        '/cart/flush' => 'api_cart_flush',
 
         // orders subrouter
         '/order' => 'api_post_order',
@@ -76,7 +77,7 @@ $routes = [
         '#^/links/(?P<id>[a-zA-Z0-9]+)$#' => 'api_link_delete',
 
         // cart subrouter
-        '/cart' => 'api_cart_delete',
+        '#^/cart/(?P<id>[0-9]+)$#' => 'api_cart_delete',
     ]
 ];
 

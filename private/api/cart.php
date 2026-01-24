@@ -6,7 +6,6 @@ require_once(__DIR__ . '/../utils/cart.php');
 
 const API_CART_PRODUCT_ID = "product_id";
 const API_CART_PRODUCT_CNT = "product_cnt";
-const API_CART_FLUSHALL = "flushall";
 
 function api_cart(array $params = []): void
 {
@@ -15,14 +14,17 @@ function api_cart(array $params = []): void
 
 function api_cart_delete(array $params = []): void
 {
+    $id = param_validation($params['id'] ?? '');
+    if ($id === null) json_response_error('invalid data recevied', 400, 'input data validation was not passed');
+    if (empty($id)) json_response_error('invalid data recevied', 400, 'recevied id is not valid');
 
-    $product_id = post_param_validation_int(API_CART_PRODUCT_ID);
-    $flushall = post_param_validation_bool(API_CART_FLUSHALL);
+    cart_remove_product($id);
+    json_response(['status' => true]);
+}
 
-    if (empty($product_id)) json_response_error('invalid data recevied', 400);
-    if (!empty($flushall) && $flushall === true) cart_destroy();
-    else cart_remove_product($product_id);
-
+function api_cart_flush(array $params = []): void
+{
+    cart_destroy();
     json_response(['status' => true]);
 }
 
@@ -44,6 +46,6 @@ function api_cart_post(array $params = []): void
         'count' => $product_cnt,
     ];
 
-    if (cart_add_product($product)) json_response(['status' => true], 200);
-    json_response_error('error in cart management', 503, 'could not update cart');
+    cart_add_product($product);
+    json_response(['status' => true], 200);
 }

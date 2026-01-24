@@ -4,25 +4,17 @@ declare(strict_types=1);
 
 function api_get_payment(array $params = []): void
 {
-    $id = $params['id'] ?? '';
-    $id = post_param_validation($id);
+    $id = param_validation($params['id'] ?? '');
+    if ($id === null) json_response_error('invalid data recevied', 400, 'input data validation was not passed');
+    if (empty($id)) json_response_error('invalid data recevied', 400, 'recevied id is not valid');
 
-    if (empty($id)) {
-        json_response_error('order not found', 404, 'received id is not valid');
-    }
-
-    if (!session_is_authenticated()) {
-        json_response_error('authentication required for looking for order', 403);
-    }
+    if (!session_is_authenticated()) json_response_error('authentication required for looking for order', 403);
 
     $res = db_one('SELECT payment WHERE id=?', [$id]);
-    if (!$res) {
-        json_response_error('payment not found', 404, 'received id could not be found in db');
-    }
+    if (!$res) json_response_error('payment not found', 404, 'received id could not be found in db');
 
-    if (!session_is_authorized_by_id($res['owner'])) {
+    if (!session_is_authorized_by_id($res['owner']))
         json_response_error('payment not found', 404, 'insufficient permissions for looking this payment');
-    }
 
     json_response([
         'status' => true,

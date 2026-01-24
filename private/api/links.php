@@ -8,24 +8,21 @@ const API_LINK_DESTINATION = 'destination';
 
 function api_get_link(array $params = []): void
 {
-    $id = $params['id'] ?? '';
-    $id = post_param_validation($id);
-
-    if (empty($id)) {
-        json_response_error('link not found', 404, 'recevied id is not valid');
-    }
+    $id = param_validation($params['id'] ?? '');
+    if ($id === null) json_response_error('invalid data recevied', 400, 'input data validation was not passed');
+    if (empty($id)) json_response_error('invalid data recevied', 400, 'recevied id is not valid');
 
     $res = db_one('SELECT id,owner where shorten_id=?', [$id]);
-    if (!$res) {
-        json_response_error('requested link not found', 404);
-    }
+    if (!$res) json_response_error('requested link not found', 404);
 
-    if (!session_is_authenticated() || !session_is_authorized_by_id($res['owner'])) {
+    if (!session_is_authenticated() || !session_is_authorized_by_id($res['owner']))
         json_response_error('non-authorized access to not owned link', 403);
-    }
 
     json_response(['status' => true, 'data' => $res], 200);
 }
+
+// TODO:
+function api_update_link(): void {}
 
 // TODO:
 // !! fix mysql NULL assignment
@@ -33,9 +30,7 @@ function api_get_link(array $params = []): void
 function api_post_link(array $params = []): void
 {
     $destination = post_param_validation(API_LINK_DESTINATION);
-    if (empty($destination)) {
-        json_response_error('invalid data recevied', 400);
-    }
+    if (empty($destination)) json_response_error('invalid data recevied', 400);
 
     // link generation
     $id = "";
@@ -86,5 +81,3 @@ function link_random_id_generate(int $chars): string
 
     return $id;
 }
-
-function api_update_link(): void {}

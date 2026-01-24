@@ -29,17 +29,15 @@ function cart_initialize(): void
     $_SESSION[SESSION_CART][SESSION_CART_INIT] = true;
 }
 
-function cart_add_product(mixed $product): bool
+function cart_add_product(array $product): void
 {
     if (!cart_is_exists()) cart_initialize();
-    if (!isset($_SESSION[SESSION_CART][SESSION_CART_PRODUCTS][$product['id']]))
-        return array_push(
-            $_SESSION[SESSION_CART][SESSION_CART_PRODUCTS] ?? [],
-            [$product['id'] => $product]
-        ) === 1;
+    if (!isset($_SESSION[SESSION_CART][SESSION_CART_PRODUCTS][$product['id']])) {
+        $_SESSION[SESSION_CART][SESSION_CART_PRODUCTS][$product['id']] = $product;
+        return;
+    }
 
     $_SESSION[SESSION_CART][SESSION_CART_PRODUCTS][$product['id']]['count'] += $product['count'];
-    return true;
 }
 
 function cart_remove_product(string $id): void

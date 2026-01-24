@@ -94,8 +94,3 @@ function api_account_register(): void
 function api_account_auth_forgot(): void {}
 
 function api_account_auth_reset(): void {}
-
-function api_account_session_debug(): void
-{
-    json_response($_SESSION, 200);
-}

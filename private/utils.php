@@ -4,19 +4,7 @@ declare(strict_types=1);
 
 const ROUTER_SUBSTR_CHARS = 7;
 
-function request_method(): string
-{
-    return strtoupper($_SERVER['REQUEST_METHOD'] ?? 'GET');
-}
-
-function request_path(): string
-{
-    $u = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
-    $p = is_string($u) ? $u : '/';
-    $p = rtrim($p, '/');
-    return $p === '' ? '/' : $p;
-}
-
+// responders
 function json_response(mixed $data, int $code = 200): never
 {
     http_response_code($code);
@@ -37,22 +25,7 @@ function json_response_error(string $message, int $code, ?string $details = ""):
     );
 }
 
-function request_json(): array
-{
-    $raw = file_get_contents('php://input');
-    if (!is_string($raw) || $raw === '') return [];
-    $data = json_decode($raw, true);
-    return is_array($data) ? $data : [];
-}
-
-function data_path(string $relative): string
-{
-    // data/ лежит на уровне project/data
-    return dirname(__DIR__) . '/data/' . ltrim($relative, '/');
-}
-
-
-/* ========= базовые ========= */
+// base
 function env(string $key, ?string $default = null): ?string
 {
     $v = getenv($key);
@@ -66,8 +39,20 @@ function is_https(): bool
     return false;
 }
 
-/* ========= минимальные сессии ========= */
+function request_method(): string
+{
+    return strtoupper($_SERVER['REQUEST_METHOD'] ?? 'GET');
+}
 
+function request_path(): string
+{
+    $u = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
+    $p = is_string($u) ? $u : '/';
+    $p = rtrim($p, '/');
+    return $p === '' ? '/' : $p;
+}
+
+// minimal sessions
 function start_session(): void
 {
     if (session_status() === PHP_SESSION_ACTIVE) return;
@@ -83,6 +68,7 @@ function start_session(): void
     session_start();
 }
 
+// for future security
 function csrf_token(): string
 {
     start_session();
@@ -92,12 +78,9 @@ function csrf_token(): string
     return (string)$_SESSION['csrf'];
 }
 
-/* ========= Шифрование (libsodium) =========
-   APP_KEY должен быть base64 от 32 байт.
-   Пример (Linux):
-   php -r "echo base64_encode(random_bytes(32)), PHP_EOL;"
-*/
-
+// libsodium enryption
+// api_key must be from 32 bytes
+// ex - php -r "echo base64_encode(random_bytes(32)), PHP_EOL;"
 function app_key(): string
 {
     $b64 = env('APP_KEY');
@@ -132,7 +115,7 @@ function decrypt_str(string $b64): ?string
     return ($plain === false) ? null : $plain;
 }
 
-// accoutns utils
+// account utils
 function pass_hash(string $password): string
 {
     return password_hash($password, PASSWORD_DEFAULT);

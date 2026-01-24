@@ -36,3 +36,8 @@ function api_ping(): void
         'ping_count' => $_SESSION['ping_count'],
     ]);
 }
+
+function api_debug_session(): void
+{
+    json_response($_SESSION, 200);
+}
