@@ -62,16 +62,6 @@ function ensure_schema(): void
     if ($res !== false) return;
 
     // starting schema installation:
-    // dummy table for migrations initialization check
-    pdo()->exec(
-        '
-            CREATE TABLE IF NOT EXISTS `migrations` (
-                `id` int(11) NOT NULL AUTO_INCREMENT,
-                `is_applied` smallint(6) DEFAULT NULL,
-                PRIMARY KEY (`id`)
-            ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci
-        ',
-    );
 
     // accounts
     pdo()->exec(
@@ -168,6 +158,52 @@ function ensure_schema(): void
                 PRIMARY KEY (`id`),
                 KEY `owner` (`owner`),
                 CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `accounts` (`id`)
+            ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci
+        ',
+    );
+
+    // analytics
+    pdo()->exec(
+        '
+            CREATE TABLE `analytics` (
+                `id` int(11) NOT NULL AUTO_INCREMENT,
+                `linkid` int(11) NOT NULL,
+                `ip` varchar(16) DEFAULT NULL,
+                `geoip_cntr` varchar(32) DEFAULT NULL,
+                `geoip_city` varchar(32) DEFAULT NULL,
+                `http_referer` varchar(16) DEFAULT NULL,
+                `http_origin` varchar(16) DEFAULT NULL,
+                `chua_ismobile` int(1) DEFAULT NULL,
+                `chua_arch` varchar(12) DEFAULT NULL,
+                `chua_model` varchar(32) DEFAULT NULL,
+                `chua_platform` varchar(32) DEFAULT NULL,
+                `chua_platformver` varchar(32) DEFAULT NULL,
+                `chua_viewport_w` varchar(32) DEFAULT NULL,
+                `chua_viewport_h` varchar(32) DEFAULT NULL,
+                `ua_codename` varchar(32) DEFAULT NULL,
+                `ua_version` varchar(32) DEFAULT NULL,
+                `ua_build` varchar(32) DEFAULT NULL,
+                `ua_os` varchar(30) DEFAULT NULL,
+                `ua_product` varchar(32) DEFAULT NULL,
+                `ua_platform` varchar(32) DEFAULT NULL,
+                `ua_browser` varchar(32) DEFAULT NULL,
+                `ua_browserver` varchar(32) DEFAULT NULL,
+                `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+                PRIMARY KEY (`id`),
+                KEY `linkid` (`linkid`),
+                CONSTRAINT `analytics_ibfk_1` FOREIGN KEY (`linkid`) REFERENCES `links` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+            ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci
+        '
+    );
+
+    // dummy table for migrations initialization check
+    // !! should be LAST!!
+    pdo()->exec(
+        '
+            CREATE TABLE IF NOT EXISTS `migrations` (
+                `id` int(11) NOT NULL AUTO_INCREMENT,
+                `is_applied` smallint(6) DEFAULT NULL,
+                PRIMARY KEY (`id`)
             ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci
         ',
     );

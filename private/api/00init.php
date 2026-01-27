@@ -22,6 +22,7 @@ require_once(__DIR__ . '/links.php');
 require_once(__DIR__ . '/order.php');
 require_once(__DIR__ . '/payment.php');
 require_once(__DIR__ . '/cart.php');
+require_once(__DIR__ . '/analytics.php');
 
 // internal handlers
 function api_ping(): void

@@ -35,6 +35,9 @@ $routes = [
 
         // cart subrouter
         '/cart' => 'api_cart',
+
+        // analytics subrouter
+        '/analytics' => 'api_analytics',
     ],
     'POST' => [
         // account users subrouter
@@ -58,6 +61,9 @@ $routes = [
 
         // orders subrouter
         '/order' => 'api_post_order',
+
+        // analytics subrouter
+        '/analytics' => 'NULL',
     ],
 
     'UPDATE' => [
