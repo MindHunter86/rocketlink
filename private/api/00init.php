@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 // utils includes
-require_once(__DIR__ . '/utils.php');
-require_once(__DIR__ . '/../utils/database.php');
+require(__DIR__ . '/utils.php');
+require(__DIR__ . '/../utils/database.php');
 
 // validate DB:mysql table schema
 ensure_schema();

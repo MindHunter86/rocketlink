@@ -2,13 +2,49 @@
 
 declare(strict_types=1);
 
+include_once(__DIR__ . '/../utils/user_agent.php');
+
 function analytics_trigger_event(int $linkid): void
 {
-    $a_useragent = $_SERVER['HTTP_USER_AGENT'] ?? "";
-    $a_useragent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:135.0) Gecko/20100101 Firefox/135.0";
-    print_r(get_browser($a_useragent));
+    // User-Agent header processing
+    $ua = parse_user_agent(($_SERVER['HTTP_USER_AGENT'] ?? ""));
 
-    $res = db_exec('INSERT INTO analytics (
+    // stop further processing on error or bot detection
+    // TODO - add bot provider detection and write to db (google, yahoo, amazon, etc.)
+    if (empty($ua) || $ua['is_bot']) return;
+
+    // Sec-CH-UA header processing
+    // TODO: use - CONFIG_LINK_SECCH_HEADERS_ENABLE
+    $ch_ismobile = $_SERVER['Sec-CH-UA-Mobile'] ?? "";
+    $is_mobile = $ch_ismobile === "?1" ? "1" : "0";
+
+    $ch_arch = $_SERVER['Sec-CH-UA-Mobile'] ?? "";
+
+    $ch_model = $_SERVER['Sec-CH-UA-Model'] ?? "";
+
+    $ch_platform = $_SERVER['Sec-CH-UA-Platform'] ?? "";
+
+    $ch_platformver = "";
+    if ($ch_platform !== "Unknown") $ch_platformver = $_SERVER['Sec-CH-UA-Platform-Version'] ?? "";
+
+    $ch_viewport_w = $_SERVER['Sec-CH-UA-Viewport-Width'] ?? "";
+    $ch_viewport_h = $_SERVER['Sec-CH-UA-Viewport-Height'] ?? "";
+
+    // IP processing
+    $ip = $_SERVER['REMOTE_ADDR'] ?? "";
+
+    // TODO : GEOIP processing
+
+    // Referer and origin processing
+    $http_referer = $_SERVER['REFERER'] ?? "";
+    $http_origin = $_SERVER['ORIGIN'] ?? "";
+
+    // TODO catch analytics trigger error
+    // !!! SQL INJECTION!!!
+    // !!! SQL INJECTION!!!
+    // !!! SQL INJECTION!!!
+    // !!! SQL INJECTION!!!
+    db_exec('INSERT INTO analytics (
         `linkid`,
         `ip`,
         `http_referer`,
@@ -20,15 +56,29 @@ function analytics_trigger_event(int $linkid): void
         `chua_platformver`,
         `chua_viewport_w`,
         `chua_viewport_h`,
-        `ua_codename`,
-        `ua_version`,
-        `ua_build`,
-        `ua_os`,
-        `ua_product`,
         `ua_platform`,
+        `ua_arch`,
+        `ua_os`,
+        `ua_osver`,
         `ua_browser`,
-        `ua_browserver`,
+        `ua_browserver`
     ) VALUES (
-
+        \'' . $linkid . '\',
+        \'' . $ip . '\',
+        \'' . $http_referer . '\',
+        \'' . $http_origin . '\',
+        \'' . $is_mobile . '\',
+        \'' . $ch_arch . '\',
+        \'' . $ch_model . '\',
+        \'' . $ch_platform . '\',
+        \'' . $ch_platformver . '\',
+        \'' . $ch_viewport_w . '\',
+        \'' . $ch_viewport_h . '\',
+        \'' . $ua['platform'] . '\',
+        \'' . $ua['arch'] . '\',
+        \'' . $ua['os'] . '\',
+        \'' . $ua['os_version'] . '\',
+        \'' . $ua['browser'] . '\',
+        \'' . $ua['browser_version'] . '\'
     )');
 }

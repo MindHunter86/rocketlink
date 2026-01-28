@@ -9,6 +9,9 @@ $path = request_path();
 if (str_starts_with($path, '/api/')) {
     require_once(__DIR__ . '/private/api.php');
     exit;
+} else if (str_starts_with($path, '/r/')) {
+    require_once(__DIR__ . '/private/redirect.php');
+    exit;
 }
 
 // fallback page
