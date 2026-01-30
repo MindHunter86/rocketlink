@@ -15,35 +15,31 @@ function analytics_trigger_event(int $linkid): void
 
     // Sec-CH-UA header processing
     // TODO: use - CONFIG_LINK_SECCH_HEADERS_ENABLE
-    $ch_ismobile = $_SERVER['Sec-CH-UA-Mobile'] ?? "";
+    $ch_ismobile = $_SERVER['Sec-CH-UA-Mobile'] ?? PDO::PARAM_NULL;
     $is_mobile = $ch_ismobile === "?1" ? "1" : "0";
 
-    $ch_arch = $_SERVER['Sec-CH-UA-Mobile'] ?? "";
+    $ch_arch = $_SERVER['Sec-CH-UA-Mobile'] ?? PDO::PARAM_NULL;
 
-    $ch_model = $_SERVER['Sec-CH-UA-Model'] ?? "";
+    $ch_model = $_SERVER['Sec-CH-UA-Model'] ?? PDO::PARAM_NULL;
 
-    $ch_platform = $_SERVER['Sec-CH-UA-Platform'] ?? "";
+    $ch_platform = $_SERVER['Sec-CH-UA-Platform'] ?? PDO::PARAM_NULL;
 
-    $ch_platformver = "";
-    if ($ch_platform !== "Unknown") $ch_platformver = $_SERVER['Sec-CH-UA-Platform-Version'] ?? "";
+    $ch_platformver = PDO::PARAM_NULL;
+    if ($ch_platform !== "Unknown") $ch_platformver = $_SERVER['Sec-CH-UA-Platform-Version'] ?? PDO::PARAM_NULL;
 
-    $ch_viewport_w = $_SERVER['Sec-CH-UA-Viewport-Width'] ?? "";
-    $ch_viewport_h = $_SERVER['Sec-CH-UA-Viewport-Height'] ?? "";
+    $ch_viewport_w = $_SERVER['Sec-CH-UA-Viewport-Width'] ?? PDO::PARAM_NULL;
+    $ch_viewport_h = $_SERVER['Sec-CH-UA-Viewport-Height'] ?? PDO::PARAM_NULL;
 
     // IP processing
-    $ip = $_SERVER['REMOTE_ADDR'] ?? "";
+    $ip = $_SERVER['REMOTE_ADDR'] ?? PDO::PARAM_NULL;
 
     // TODO : GEOIP processing
 
     // Referer and origin processing
-    $http_referer = $_SERVER['REFERER'] ?? "";
-    $http_origin = $_SERVER['ORIGIN'] ?? "";
+    $http_referer = $_SERVER['REFERER'] ?? PDO::PARAM_NULL;
+    $http_origin = $_SERVER['ORIGIN'] ?? PDO::PARAM_NULL;
 
     // TODO catch analytics trigger error
-    // !!! SQL INJECTION!!!
-    // !!! SQL INJECTION!!!
-    // !!! SQL INJECTION!!!
-    // !!! SQL INJECTION!!!
     db_exec('INSERT INTO analytics (
         `linkid`,
         `ip`,
@@ -62,23 +58,23 @@ function analytics_trigger_event(int $linkid): void
         `ua_osver`,
         `ua_browser`,
         `ua_browserver`
-    ) VALUES (
-        \'' . $linkid . '\',
-        \'' . $ip . '\',
-        \'' . $http_referer . '\',
-        \'' . $http_origin . '\',
-        \'' . $is_mobile . '\',
-        \'' . $ch_arch . '\',
-        \'' . $ch_model . '\',
-        \'' . $ch_platform . '\',
-        \'' . $ch_platformver . '\',
-        \'' . $ch_viewport_w . '\',
-        \'' . $ch_viewport_h . '\',
-        \'' . $ua['platform'] . '\',
-        \'' . $ua['arch'] . '\',
-        \'' . $ua['os'] . '\',
-        \'' . $ua['os_version'] . '\',
-        \'' . $ua['browser'] . '\',
-        \'' . $ua['browser_version'] . '\'
-    )');
+    ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )', [
+        $linkid,
+        $ip,
+        $http_referer,
+        $http_origin,
+        $is_mobile,
+        $ch_arch,
+        $ch_model,
+        $ch_platform,
+        $ch_platformver,
+        $ch_viewport_w,
+        $ch_viewport_h,
+        $ua['platform'] ?? PDO::PARAM_NULL,
+        $ua['arch'] ?? PDO::PARAM_NULL,
+        $ua['os'] ?? PDO::PARAM_NULL,
+        $ua['os_version'] ?? PDO::PARAM_NULL,
+        $ua['browser'] ?? PDO::PARAM_NULL,
+        $ua['browser_version'] ?? PDO::PARAM_NULL,
+    ]);
 }

@@ -22,7 +22,6 @@ function redirect_link_redirect(array $params = []): void
         exit;
     }
 
-
     analytics_trigger_event($res['id']);
 
     header('Location: ' . $res['destination']);
