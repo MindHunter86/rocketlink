@@ -4,21 +4,6 @@ import * as utils from "./utils.js";
 // shortcut
 const $ = (sel, root = document) => root.querySelector(sel);
 
-const routeToPath = {
-  home: "/",
-  prices: "/prices",
-  about: "/about",
-  github: "/github",
-  login: "/login",
-  logout: "/logout",
-  links: "/links",
-  "ui-pricesdet": "/ui-pricesdet",
-  "ui-shortenlist": "/ui-shortenlist",
-  "ui-shortendtls": "/ui-shortendtls",
-  "ui-cart": "/ui-cart",
-  "ui-payment": "/ui-payment",
-};
-
 const routeToTpl = {
   home: "page_template-home",
   prices: "page_template-prices",
@@ -27,6 +12,7 @@ const routeToTpl = {
   login: "page_template-auth",
   logout: "page_template-home",
   links: "page_template-shrtlist",
+  links_detailed: "page_utemplate-shrtdtls",
   "ui-payment": "page_utemplate-addpayment",
   "ui-cart": "page_utemplate-cart",
   "ui-shortenlist": "page_utemplate-shrtlist",
@@ -34,38 +20,69 @@ const routeToTpl = {
   "404": "page_template-404",
 };
 
+const routes = [
+  { re: /^\/$/, view: "home" },
+  { re: /^\/about$/, view: "about" },
+  { re: /^\/github$/, view: "github" },
+  { re: /^\/login$/, view: "login" },
+  { re: /^\/logout$/, view: "logout" },
+  { re: /^\/ui-shortenlist$/, view: "ui-shortenlist" },
+  { re: /^\/ui-shortendtls$/, view: "ui-shortenlist" },
+  { re: /^\/ui-cart$/, view: "ui-cart" },
+  { re: /^\/ui-payment$/, view: "page_utemplate-addpayment" },
+
+  { re: /^\/links$/, view: "links" },
+  { re: /^\/links\/(?<id>[a-zA-Z0-9-]+)$/, view: "links_detailed" },
+];
+
 function showError(err) {
   console.error(err);
   alert(err?.message || "Ошибка");
 }
 
 // rendering
-export async function render(route, { initial = false } = {}) {
-  mount(route);
-  setActiveNav(route);
+export async function render(route, initial = false) {
+  console.log(route);
+  mount(route.view);
+  setActiveNav(route.view);
 
   // minimal hooks
   try {
+    // document.querySelector("#productId").textContent = params.id || "—";
     if (initial === true) await actions.page_initial_loading();
 
-    if (route === "login") await actions.page_login_login();
-    else if (route === 'logout') await actions.page_login_logout();
-    else if (route === 'links') await actions.page_shrtlist_list();
-    else if (route === "profile") await loadMe();
+    if (route.view === "login") await actions.page_login_login();
+    else if (route.view === 'logout') await actions.page_login_logout();
+    else if (route.view === 'links') await actions.page_shrtlist_list();
+    else if (route.view === "profile") await loadMe();
   } catch (e) {
     showError(e);
   }
 }
 
 // history API navigation
-export async function navigate(route, { replace = false } = {}) {
-  const path = routeToPath[route] || "/404";
-  const state = { route };
+function matchRoute(pathname) {
+  const path = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
 
-  if (replace) history.replaceState(state, "", path);
-  else history.pushState(state, "", path);
+  for (const r of routes) {
+    const m = path.match(r.re);
+    if (m) {
+      console.log(m);
+      return { view: r.view, params: m.groups || {} };
+    }
+  }
+  console.log(pathname);
 
-  render(route, { initial: replace });
+  return { view: "404", params: {} };
+}
+
+export async function navigate(route, replace = false) {
+  const match = matchRoute(route);
+  console.log(match);
+  const fn = replace ? history.replaceState : history.pushState;
+
+  fn.call(history, match, "", route);
+  render(match, replace);
 }
 
 export function mount(route) {
@@ -106,6 +123,7 @@ function makeShortenListElem(link) {
   if (!node) return;
 
   node.querySelector('[data-bind="shortenid"]').textContent = 'trm.sh/' + link.shortenid;
+  node.querySelector('[data-bind="shortenid"]').href = '/links/' + link.shortenid;
   node.querySelector('[data-bind="shortendate"]').textContent = utils.formatShortenDate(link.created_at);
   node.querySelector('[data-bind="shortendst"]').href = link.destination;
   node.querySelector('[data-bind="shortendst"]').textContent = utils.shortHost(link.destination);

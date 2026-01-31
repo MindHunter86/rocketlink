@@ -60,7 +60,7 @@ export async function page_login_login() {
         e.preventDefault();
 
         if (!sessiondata["login_username"]) {
-            navigate("home");
+            navigate("/");
             return;
         }
 
@@ -74,7 +74,7 @@ export async function page_login_login() {
                 if (!response || response.status !== "ok") console.log("API respond with non-parsable object");
 
                 navSwitchLoggedView("true");
-                navigate("home");
+                navigate("/");
             })
             .catch(() => {
                 $('#input_signin-password').value = "";
@@ -103,7 +103,7 @@ export async function page_login_login() {
             })
             .catch(() => {
                 console.log("API request failure!");
-                navigate("home");
+                navigate("/");
             });
     });
 }
@@ -118,7 +118,7 @@ export async function page_login_logout() {
     if (!response || response.status !== "ok") console.log("API respond with non-parsable object");
 
     navSwitchLoggedView("false");
-    navigate("home");
+    navigate("/");
 }
 
 export async function page_shrtlist_list() {
@@ -134,6 +134,6 @@ export async function page_shrtlist_list() {
         .catch((e) => {
             console.log(e);
             console.log("API request failure!");
-            navigate("home");
+            navigate("/");
         });
 }
