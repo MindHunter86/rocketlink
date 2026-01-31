@@ -12,6 +12,7 @@ const routeToTpl = {
   login: "page_template-auth",
   logout: "page_template-home",
   links: "page_template-shrtlist",
+  links_create: "page_template-shrtlist",
   links_detailed: "page_template-shrtdtls",
   "ui-payment": "page_utemplate-addpayment",
   "ui-cart": "page_utemplate-cart",
@@ -27,12 +28,15 @@ const routes = [
   { re: /^\/github$/, view: "github" },
   { re: /^\/login$/, view: "login" },
   { re: /^\/logout$/, view: "logout" },
+  // { re: /^\/prices$/, view: "prices" },
+
   // { re: /^\/ui-shortenlist$/, view: "ui-shortenlist" },
   // { re: /^\/ui-shortendtls$/, view: "ui-shortendtls" },
   // { re: /^\/ui-cart$/, view: "ui-cart" },
   // { re: /^\/ui-payment$/, view: "page_utemplate-addpayment" },
 
   { re: /^\/links$/, view: "links" },
+  { re: /^\/links\/new$/, view: "links_create" },
   { re: /^\/links\/(?<id>[a-zA-Z0-9-]+)$/, view: "links_detailed" },
 ];
 
@@ -43,11 +47,14 @@ function showError(err) {
 
 // rendering
 export async function render(route, initial = false) {
+  // minimal pre-hooks
+  if (route.view === 'links_create') await actions.page_shrtlist_new();
+
   console.log(route);
   mount(route.view);
   setActiveNav(route.view);
 
-  // minimal hooks
+  // minimal post-hooks
   try {
     // document.querySelector("#productId").textContent = params.id || "—";
     if (initial === true) await actions.page_initial_loading();
@@ -55,6 +62,7 @@ export async function render(route, initial = false) {
     if (route.view === "login") await actions.page_login_login();
     else if (route.view === 'logout') await actions.page_login_logout();
     else if (route.view === 'links') await actions.page_shrtlist_list();
+    else if (route.view === 'links_create') await actions.page_shrtlist_list();
     else if (route.view === 'links_detailed') await actions.page_shrtdtls_details(route.params.id);
     else if (route.view === "profile") await loadMe();
   } catch (e) {

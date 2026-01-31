@@ -1,8 +1,17 @@
-/* cbcprj.css */
+/* style.css */
 
+/* !! IMPORTANT NOTICE !! */
+/*
+ * NOTICE
+ * This file contains code initially generated with the assistance of AI tooling (this file only not the project as a whole).
+ * The resulting implementation has been reviewed, tested, and, where necessary,
+ * corrected by the project maintainer prior to publication.
+ */
+
+/* colors were written by chatgpt, I'm very bad in design */
 :root {
     --bg-layers:
-        radial-gradient(800px 520px at 50% 22%, var(--scrim-strong), rgba(10, 12, 16, 0) 70%),
+        radial-gradient(800px 520px at 50% 22%, var(--scrim-strong), rgba(10, 12, 16, 0.6) 70%),
         linear-gradient(0deg, var(--scrim), var(--scrim)),
         url("../img/bg/9735877.jpg") center / cover no-repeat;
 
@@ -50,15 +59,6 @@ body {
     text-rendering: optimizeLegibility;
 
     overflow-y: hidden;
-
-    /* background:
-        radial-gradient(800px 520px at 50% 22%, var(--scrim-strong), rgba(10, 12, 16, 0) 70%),
-        linear-gradient(0deg, var(--scrim), var(--scrim)),
-        url("../public/img/bg/6221903.jpg") center / cover no-repeat; */
-    /* background:
-        radial-gradient(800px 520px at 50% 22%, var(--scrim-strong), rgba(10, 12, 16, 0) 70%),
-        linear-gradient(0deg, var(--scrim), var(--scrim)),
-        url("../public/img/bg/9735877.jpg") center / cover no-repeat; */
     background: var(--bg-layers);
 }
 

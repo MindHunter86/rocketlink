@@ -31,6 +31,8 @@ function api_post_link(array $params = []): void
 {
     $destination = post_param_validation(API_LINK_DESTINATION);
     if (empty($destination)) json_response_error('invalid data recevied', 400);
+    if (!preg_match('%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i', $destination))
+        json_response_error('invalid data recevied', 400, 'regexp test failed');
 
     // link generation
     $id = "";

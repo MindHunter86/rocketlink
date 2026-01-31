@@ -170,31 +170,30 @@
 
   <template id="page_template-404">
     <div class="container">
-      <div id="page_main-page" class="row row-no-padding row-fullwindow row-column">
-        <div class="column column-60 column-offset-20">
-          <h1 class="title">oops</h1>
-          <h2 class="description">shoten your links before sharing</h2>
-          <h3 class="description"><strong>minimaze. share. analyze.</strong></h3>
+      <div id="page_main-page" class="row row-no-padding row-center row-fullwindow row-column">
+        <div class="column column-60">
+          <h1 class="title">404</h1>
+          <h2 class="description">not found</h2>
         </div>
       </div>
     </div>
   </template>
   <template id="page_template-home">
     <div class="container">
-      <div id="page_main-page" class="row row-no-padding row-fullwindow row-column">
-        <div class="column column-60 column-offset-20">
+      <div id="page_main-page" class="row row-no-padding row-center row-fullwindow row-column">
+        <div class="column column-60">
           <h1 class="title">project name</h1>
           <h2 class="description">shoten your links before sharing</h2>
           <h3 class="description"><strong>minimaze. share. analyze.</strong></h3>
         </div>
-        <div class="column column-60 column-offset-20">
-          <form class="shorten shorten-nomarging" id="shorten-form" style="transition: padding-top 1s;">
+        <div class="column column-60">
+          <form class="shorten shorten-nomarging" id="form_home-shorten" style="transition: padding-top 1s;">
             <label>Paste link to be shorten for</label>
-            <input type="text" required>
-            <a class="button button-small" id="test-shorten-button">Minimaze</a>
+            <input type="url" name="destination" required>
+            <a class="button button-small" id="page_home-shorten" href="/links/new" data-route="internal">minimaze</a>
           </form>
         </div>
-        <div class="column column-60 column-offset-20">
+        <!-- <div class="column column-60 column-offset-20">
           <div class="shorten-cascade">
             <article class="article-card article-card--accent">
               <p class="muted">test text</p>
@@ -215,25 +214,8 @@
               Also you can get QR code here XXX.
             </article>
           </div>
-        </div>
+        </div> -->
       </div>
-      <!-- <div id="page_login-page" class="row row-no-padding row-center row-fullwindow disabled">
-        <div class="column column-50"></div>
-        <div class="column column-50">
-          <h1>Sign in / Sign up</h1>
-          <p></p>
-          <form>
-            <input type="text">
-          </form>
-        </div>
-      </div> -->
-      <!-- <div class="row row-no-padding row-center">
-        <div class="column column-50 column-offset-50">
-          <footer>
-            It's footer
-          </footer>
-        </div>
-      </div> -->
     </div>
   </template>
   <template id="page_template-prices">
@@ -355,11 +337,11 @@
           </div>
         </div>
         <div class="column column-33">
-          <div class="continaer container-w-5rem">
+          <!-- <div class="continaer container-w-5rem">
             <h3>TODO</h3>
             <p>disable all from main page and display only navigation</p>
             <p>also move the logo from left corner to right and navigation a little bit move down</p>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -431,11 +413,11 @@
           </div>
         </div>
         <div class="column column-33">
-          <div class="continaer container-w-5rem">
+          <!-- <div class="continaer container-w-5rem">
             <h3>TODO</h3>
             <p>disable all from main page and display only navigation</p>
             <p>also move the logo from left corner to right and navigation a little bit move down</p>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -492,11 +474,11 @@
           </div>
         </div>
         <div class="column column-50">
-          <div class="continaer container-w-5rem">
+          <!-- <div class="continaer container-w-5rem">
             <h3>TODO</h3>
             <p>disable all from main page and display only navigation</p>
             <p>also move the logo from left corner to right and navigation a little bit move down</p>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -551,11 +533,11 @@
           </div>
         </div>
         <div class="column column-33">
-          <div class="continaer container-w-5rem">
+          <!-- <div class="continaer container-w-5rem">
             <h3>TODO</h3>
             <p>disable all from main page and display only navigation</p>
             <p>also move the logo from left corner to right and navigation a little bit move down</p>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -637,11 +619,11 @@
           </div>
         </div>
         <div class="column column-33">
-          <div class="continaer container-w-5rem">
+          <!-- <div class="continaer container-w-5rem">
             <h3>TODO</h3>
             <p>disable all from main page and display only navigation</p>
             <p>also move the logo from left corner to right and navigation a little bit move down</p>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

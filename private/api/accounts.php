@@ -120,7 +120,10 @@ function api_account_links(): void
     if (!session_is_authenticated())
         json_response_error('session in not authenticated', 403);
 
-    $res = db_all('SELECT shortenid, destination, created_at FROM links where owner=?', [session_get_account_userid()]);
+    $res = db_all(
+        'SELECT shortenid, destination, created_at FROM links where owner=? ORDER BY created_at DESC',
+        [session_get_account_userid()]
+    );
     if (!$res) json_response_error('links not found', 404);
 
     json_response(['status' => 'ok', 'data' => $res], 200);

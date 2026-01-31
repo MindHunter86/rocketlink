@@ -138,6 +138,32 @@ export async function page_shrtlist_list() {
         });
 }
 
+// TODO - add data verification (is URL?)
+// !! BUG - race condition
+export async function page_shrtlist_new() {
+    console.log("actions.page - shrtlist new page loading");
+
+    const createform = $("#form_home-shorten");
+    if (!createform) return;
+
+    var data = new FormData(createform);
+    await api('/links', {
+        method: 'POST',
+        body: `destination=${data.get('destination')}`,
+        credentials: 'include',
+    })
+        .then(async (response) => {
+            if (!response || response.status !== "ok") console.log("API respond with non-parsable object");
+            // !! TODO - 300ms YABAI!!
+            await new Promise(r => setTimeout(() => r(), 300));
+        })
+        .catch((e) => {
+            console.log(e);
+            console.log("API request failure!");
+            navigate("/");
+        });
+}
+
 export async function page_shrtdtls_details(id) {
     console.log("actions.page - shrtdtls details page loading");
 
