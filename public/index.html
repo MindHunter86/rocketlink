@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="application-name" content="Saeko Anti-DDoS guardian">
+  <meta name="author" content="mnt@anilibria.top">
+  <meta name="description" content="OpenSource Anti-DDoS and Anti-AI solution by AniLibria team">
+
+  <title>RocketLink</title>
+
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+
+  <!-- CSS Reset -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+
+  <!-- Milligram CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+
+  <link href="/public/favicon.ico" rel="shortcut icon">
+  <link href="/public/favicon.svg" rel="icon" type="image/svg+xml" sizes="any">
+  <link href="/public/safari-pinned-tab.svg" rel="mask-icon" type="image/svg+xml">
+  <link href="/public/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+  <link href="/public/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
+  <link href="/public/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
+  <link href="/public/favicon-96x96.png" rel="icon" type="image/png" sizes="96x96">
+
+  <link rel="stylesheet" href="./css/style.css">
+
+  <script type="module" src="/js/app.mjs"></script>
+  <!-- <script defer src="../src/cbcprj.mjs"></script> -->
+
+  <!-- Chart.JS -->
+  <!-- <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.min.js"></script>
+  <script type="module" src="http://localhost:8000/src/cbcprj-chats.mjs"></script> -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
+  <script>
+    const data = [
+      { year: 2010, count: 10 },
+      { year: 2011, count: 20 },
+      { year: 2012, count: 15 },
+      { year: 2013, count: 25 },
+      { year: 2014, count: 22 },
+      { year: 2015, count: 30 },
+      { year: 2016, count: 28 },
+    ];
+
+    document.addEventListener('DOMContentLoaded', function () {
+      new Chart(
+        document.getElementById('acquisitions7'),
+        {
+          type: 'bar',
+          data: {
+            labels: data.map(row => row.year),
+            datasets: [
+              {
+                label: 'Acquisitions by year',
+                data: data.map(row => row.count)
+              }
+            ]
+          }
+        }
+      );
+      new Chart(
+        document.getElementById('acquisitions6'),
+        {
+          type: 'bar',
+          data: {
+            labels: data.map(row => row.year),
+            datasets: [
+              {
+                label: 'Acquisitions by year',
+                data: data.map(row => row.count)
+              }
+            ]
+          }
+        }
+      );
+      new Chart(
+        document.getElementById('acquisitions5'),
+        {
+          type: 'bar',
+          data: {
+            labels: data.map(row => row.year),
+            datasets: [
+              {
+                label: 'Acquisitions by year',
+                data: data.map(row => row.count)
+              }
+            ]
+          }
+        }
+      );
+      new Chart(
+        document.getElementById('acquisitions'),
+        {
+          type: 'bar',
+          data: {
+            labels: data.map(row => row.year),
+            datasets: [
+              {
+                label: 'Acquisitions by year',
+                data: data.map(row => row.count)
+              }
+            ]
+          }
+        }
+      );
+      new Chart(
+        document.getElementById('acquisitions2'),
+        {
+          type: 'bar',
+          data: {
+            labels: data.map(row => row.year),
+            datasets: [
+              {
+                label: 'Acquisitions by year',
+                data: data.map(row => row.count)
+              }
+            ]
+          }
+        }
+      );
+      new Chart(
+        document.getElementById('acquisitions3'),
+        {
+          type: 'bar',
+          data: {
+            labels: data.map(row => row.year),
+            datasets: [
+              {
+                label: 'Acquisitions by year',
+                data: data.map(row => row.count)
+              }
+            ]
+          }
+        }
+      );
+    });
+  </script>
+</head>
+
+<body>
+  <section id="page_section-nav" class="is-visible navigation">
+    <nav>
+      <ul>
+        <li><strong><a href="/" data-route="home">home</a></strong></li>
+        <li><strong><a href="/prices" data-route="prices">plans</a></strong></li>
+        <li><strong><a href="/about" data-route="about">about</a></strong></li>
+        <li><strong><a href="/github" data-route="github">github</a></strong></li>
+        <li><strong><a href="/login" data-route="login" data-islogged="false">login</a></strong></li>
+        <li><strong><a href="/links" data-route="links" data-islogged="true">your links</a></strong></li>
+        <li><strong><a href="/logout" data-route="logout" data-islogged="true">logout</a></strong></li>
+        <li><strong><a href="#" data-route="">--DEBUG --</a></strong></li>
+        <!-- <li><strong><a href="/ui-pricesdet" data-route="ui-pricesdet">prices det.</a></strong></li> -->
+        <li><strong><a href="/ui-shortenlist" data-route="ui-shortenlist">shorten list</a></strong></li>
+        <li><strong><a href="/ui-shortendtls" data-route="ui-shortendtls">shorten det.</a></strong></li>
+        <li><strong><a href="/ui-cart" data-route="ui-cart">cart</a></strong></li>
+        <li><strong><a href="/ui-payment" data-route="ui-payment">payment</a></strong></li>
+      </ul>
+    </nav>
+  </section>
+  <section id="app" class="is-visible"></section>
+
+  <template id="page_template-404">
+    <div class="container">
+      <div id="page_main-page" class="row row-no-padding row-fullwindow row-column">
+        <div class="column column-60 column-offset-20">
+          <h1 class="title">oops</h1>
+          <h2 class="description">shoten your links before sharing</h2>
+          <h3 class="description"><strong>minimaze. share. analyze.</strong></h3>
+        </div>
+      </div>
+    </div>
+  </template>
+  <template id="page_template-home">
+    <div class="container">
+      <div id="page_main-page" class="row row-no-padding row-fullwindow row-column">
+        <div class="column column-60 column-offset-20">
+          <h1 class="title">project name</h1>
+          <h2 class="description">shoten your links before sharing</h2>
+          <h3 class="description"><strong>minimaze. share. analyze.</strong></h3>
+        </div>
+        <div class="column column-60 column-offset-20">
+          <form class="shorten shorten-nomarging" id="shorten-form" style="transition: padding-top 1s;">
+            <label>Paste link to be shorten for</label>
+            <input type="text" required>
+            <a class="button button-small" id="test-shorten-button">Minimaze</a>
+          </form>
+        </div>
+        <div class="column column-60 column-offset-20">
+          <div class="shorten-cascade">
+            <article class="article-card article-card--accent">
+              <p class="muted">test text</p>
+              Your link <a href="#">https://t.bkcp.link/xyz</a><br>
+              For analytics you need registration here XXX.
+
+              Also you can get QR code here XXX.
+            </article>
+          </div>
+        </div>
+        <div class="column column-60 column-offset-20">
+          <div class="shorten-cascade">
+            <article class="article-card article-card--accent">
+              <p class="muted">test text</p>
+              Your link <a href="#">https://t.bkcp.link/xyz</a><br>
+              For analytics you need registration here XXX.
+
+              Also you can get QR code here XXX.
+            </article>
+          </div>
+        </div>
+      </div>
+      <!-- <div id="page_login-page" class="row row-no-padding row-center row-fullwindow disabled">
+        <div class="column column-50"></div>
+        <div class="column column-50">
+          <h1>Sign in / Sign up</h1>
+          <p></p>
+          <form>
+            <input type="text">
+          </form>
+        </div>
+      </div> -->
+      <!-- <div class="row row-no-padding row-center">
+        <div class="column column-50 column-offset-50">
+          <footer>
+            It's footer
+          </footer>
+        </div>
+      </div> -->
+    </div>
+  </template>
+  <template id="page_template-prices">
+    <div class="container min-w-screen prices">
+      <div class="row row-no-padding row-container">
+        <div class="column column-60 u-max60-center column-overflow column-content-scroll">
+          <div class="container container-w-5rem">
+            <h1>Plans</h1>
+            <hr>
+            <div class="row row-no-padding row-fullwindow row-column">
+              <div class="column">
+                <div class="shorten-cascade">
+                  <article class="article-card article-card--accent">
+                    <h4>
+                      OpenSource / Free
+                      <span class="float-right muted subtitle">for super-developers</span>
+                    </h4>
+                    <div class="container">
+                      <div class="row row-no-padding">
+                        <div class="column column-66">
+                          <ul class="price-list">
+                            <li>✅Free Feature 1</li>
+                            <li>✅Free Feature 1</li>
+                            <li>✅Free Feature 1</li>
+                            <li>✅Free Feature 1</li>
+                          </ul>
+                        </div>
+                        <div class="column column-33 prices-article-btn">
+                          <a class="button">Download</a>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="column">
+                <div class="shorten-cascade">
+                  <article class="article-card article-card--accent">
+                    <h4 class="h-no-bmargin">
+                      Pro
+                      <span class="float-right muted">for professional users</span>
+                    </h4>
+                    <div class="container">
+                      <div class="row row-no-padding">
+                        <div class="column column-66">
+                          <ul class="price-list">
+                            <li>✅Whole features above</li>
+                            <li>✅Pro feature 1</li>
+                            <li>✅Pro feature 2</li>
+                            <li>✅Pro feature 3</li>
+                          </ul>
+                        </div>
+                        <div class="column column-33 prices-article-btn">
+                          <a class="button">Purchase</a>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="column">
+                <div class="shorten-cascade">
+                  <article class="article-card article-card--accent">
+                    <h4 class="h-no-bmargin">
+                      Team
+                      <span class="float-right muted">for small teams</span>
+                    </h4>
+                    <div class="container">
+                      <div class="row row-no-padding">
+                        <div class="column column-66">
+                          <ul class="price-list">
+                            <li>✅Whole features above</li>
+                            <li>✅Team feature 1</li>
+                            <li>✅Team feature 2</li>
+                            <li>✅Team feature 3</li>
+                          </ul>
+                        </div>
+                        <div class="column column-33 prices-article-btn">
+                          <a class="button">Upgrade</a>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="column">
+                <div class="shorten-cascade">
+                  <article class="article-card article-card--accent">
+                    <h4 class="h-no-bmargin">
+                      Enterprise
+                      <span class="float-right muted">for enterprise hammers</span>
+                    </h4>
+                    <div class="container">
+                      <div class="row row-no-padding">
+                        <div class="column column-66">
+                          <ul class="price-list">
+                            <li>✅Whole features above</li>
+                            <li>✅Some customs by requests</li>
+                          </ul>
+                        </div>
+                        <div class="column column-33 prices-article-btn">
+                          <a class="button">Contact us</a>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+            <footer>
+              <p>
+                <qtpl-data></qtpl-data>
+                <span id="supportinfo">
+                  ProjectName &amp; ProjectTeam Support Team : <a
+                    href="https://t.me/support"><strong>Telegram</strong></a>
+                </span>
+              </p>
+            </footer>
+          </div>
+        </div>
+        <div class="column column-33">
+          <div class="continaer container-w-5rem">
+            <h3>TODO</h3>
+            <p>disable all from main page and display only navigation</p>
+            <p>also move the logo from left corner to right and navigation a little bit move down</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <template id="page_template-about">
+    <div class="container min-w-screen about">
+      <div class="row row-container">
+        <div class="column column-60 u-max60-center">
+          <div class="container container-w-5rem">
+            <h1>About us</h1>
+            <hr>
+            <div class="row row-no-padding row-fullwindow row-column">
+              <div class="column column-pad-1rem">
+                <p>
+                  A long time ago ... <br>
+                  it was time when the dragons are contolling the world ...
+                </p>
+              </div>
+            </div>
+            <footer>
+              <p>
+                <qtpl-data></qtpl-data>
+                <span id="supportinfo">
+                  ProjectName &amp; ProjectTeam Support Team : <a
+                    href="https://t.me/support"><strong>Telegram</strong></a>
+                </span>
+              </p>
+            </footer>
+          </div>
+        </div>
+        <div class="column column-33">
+          <div class="continaer container-w-5rem">
+            <h3>TODO</h3>
+            <p>disable all from main page and display only navigation</p>
+            <p>also move the logo from left corner to right and navigation a little bit move down</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <template id="page_template-github">
+    <div class="container min-w-screen github">
+      <div class="row row-no-padding row-container">
+        <div class="column column-60 u-max60-center">
+          <div class="container container-w-5rem">
+            <h1>Github</h1>
+            <hr>
+            <div class="row column-no-padding row-fullwindow row-column">
+              <div class="column column-pad-1rem">
+                <p>
+                  You will be redirected on our GitHub page <br>
+                  <strong>Redirecting ...</strong>
+                </p>
+                <p class="mute">
+                  If redirection is not happens, please go to <a href="https://github.com">ProjectName 's GitHub
+                    Page</a>
+                </p>
+              </div>
+            </div>
+            <footer>
+              <p>
+                <qtpl-data></qtpl-data>
+                <span id="supportinfo">
+                  ProjectName &amp; ProjectTeam Support Team : <a
+                    href="https://t.me/support"><strong>Telegram</strong></a>
+                </span>
+              </p>
+            </footer>
+          </div>
+        </div>
+        <div class="column column-33">
+          <div class="continaer container-w-5rem">
+            <h3>TODO</h3>
+            <p>disable all from main page and display only navigation</p>
+            <p>also move the logo from left corner to right and navigation a little bit move down</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <template id="page_template-auth">
+    <div class="container min-w-screen login">
+      <div class="row row-center row-container">
+        <div class="column column-50 u-max60-center">
+          <div class="continaer container-w-5rem">
+            <h1>Sign In / Sign Up</h1>
+            <form id="form_auth-common" class="form-entity is-visible">
+              <p>Enter your email for further authorization</p>
+              <label for="input_common-email">Email</label>
+              <input type="email" id="input_common-email" name="username" value="test@example.com" required>
+              <button id="btn_auth-common" class="button-primary" type="submit">Submit</button>
+            </form>
+            <form id="form_auth-signin" class="form-entity" action="#">
+              <p>Use your credentials for system authorization</p>
+              <label for="input_signin-password">Password</label>
+              <input type="password" id="input_signin-password" name="password" required>
+              <button id="btn_auth-signin" class="button-primary" type="submit">SignIn</button>
+            </form>
+            <form id="form_auth-signup" class="form-entity" action="#">
+              <p>Account registration process</p>
+              <label for="input_signup-email">Email</label>
+              <input type="email" id="input_signup-email" name="username" value="test@example.com" required>
+              <label for="input_signup-password">Password</label>
+              <input type="password" id="input_signup-password" name="password" required>
+              <label for="input_signup-purpose">Usage purpose</label>
+              <select id="input_signup-purpose" name="purpose" required>
+                <option value="1">Personal Usage</option>
+                <option value="2">Non-commerce project</option>
+                <option value="3">Enterprice</option>
+              </select>
+              <div class="float-right">
+                <input type="checkbox" id="input_signup-eula" name="eula" value="true" required>
+                <label class="label-inline" for="input_signup-eula">I'm accept the EULA</label>
+              </div>
+              <button id="btn_auth-signup" class="button-primary" type="submit">SignUp</button>
+            </form>
+            <div id="form_auth-success" class="form-entity">
+              <p>Authorization process complete!</p>
+              <p>Redirecting ...</p>
+            </div>
+            <footer>
+              <p>
+                <qtpl-data></qtpl-data>
+                <span id="supportinfo">
+                  ProjectName &amp; ProjectTeam Support Team : <a
+                    href="https://t.me/support"><strong>Telegram</strong></a>
+                </span>
+              </p>
+            </footer>
+          </div>
+        </div>
+        <div class="column column-50">
+          <div class="continaer container-w-5rem">
+            <h3>TODO</h3>
+            <p>disable all from main page and display only navigation</p>
+            <p>also move the logo from left corner to right and navigation a little bit move down</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <template id="page_template-shrtlist">
+    <div class="container min-w-screen shortenlist">
+      <div class="row row-no-padding row-container">
+        <div class="column column-60 u-max60-center column-overflow column-content-scroll">
+          <div class="continaer container-w-5rem">
+            <h1>Your shorten links</h1>
+            <hr>
+            <div class="row row-no-padding row-column row-shorten" id="page_shrtlist-list">
+              <template id="tpl_shrtlist-card">
+                <div class="column">
+                  <div class="shorten-cascade">
+                    <article class="article-card article-card--accent">
+                      <div class="container">
+                        <div class="row row-no-padding">
+                          <div class="column column-pad-1rem">
+                            <h4>
+                              <span data-bind="shortenid">sh.trm.sh/X03Fpar1m</span>
+                              <span data-bind="shortendate" class="float-right muted subtitle">05.01.2026</span>
+                            </h4>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="container">
+                        <div class="row row-no-padding">
+                          <div class="column column-pad-1rem">
+                            <ul class="price-list">
+                              <li>Target: <a data-bind="shortendst"
+                                  href="https://www.google.com/search?client=ubuntu&channel=fs&q=input+date+only+month+and+year">www.google.com/search?...</a>
+                              </li>
+                              <li>Stats TWMC: 64/2,504/9,234/25,523</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </template>
+            </div>
+            <footer>
+              <p>
+                <qtpl-data></qtpl-data>
+                <span id="supportinfo">
+                  ProjectName &amp; ProjectTeam Support Team : <a
+                    href="https://t.me/support"><strong>Telegram</strong></a>
+                </span>
+              </p>
+            </footer>
+          </div>
+        </div>
+        <div class="column column-33">
+          <div class="continaer container-w-5rem">
+            <h3>TODO</h3>
+            <p>disable all from main page and display only navigation</p>
+            <p>also move the logo from left corner to right and navigation a little bit move down</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- User's space template pages -->
+  <template id="page_utemplate-addpayment">
+    <div class="container min-w-screen payment">
+      <div class="row row-no-padding row-container">
+        <div class="column column-50 u-max60-center">
+          <div class="continaer container-w-5rem">
+            <h1>Payment Details</h1>
+            <hr>
+            <p>Updating payment information</p>
+            <form id="form_payment-update" class="form-entity is-visible" action="#">
+              <div class="row">
+                <div class="column column-pad-1rem">
+                  <label for="input_pay-ccn">Credit Card Number</label>
+                  <input type="tel" id="input_pay-ccn" value="1234 5678 9012 3456" autocomplete="cc-number"
+                    maxlength="19" inputmode="numeric" pattern="[0-9\s]{13,19}" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column column-33">
+                  <label for="input_pay-cvv">CVV</label>
+                  <input type="password" id="input_pay-cvv" maxlength="3" pattern="[0-9]+" required>
+                </div>
+                <div class="column column-33 column-offset-33">
+                  <label for="input_pay-valid">Valid to</label>
+                  <input type="month" id="input_pay-valid" min="2026-01" max="2050-01" placeholder="01/30" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column column-pad-1rem">
+                  <button id="btn_pay-update" class="button button-primary w-full" type="submit">update payment
+                    details</button>
+                </div>
+              </div>
+            </form>
+            <footer>
+              <p>
+                <qtpl-data></qtpl-data>
+                <span id="supportinfo">
+                  ProjectName &amp; ProjectTeam Support Team : <a
+                    href="https://t.me/support"><strong>Telegram</strong></a>
+                </span>
+              </p>
+            </footer>
+          </div>
+        </div>
+        <div class="column column-50">
+          <div class="continaer container-w-5rem">
+            <h3>TODO</h3>
+            <p>disable all from main page and display only navigation</p>
+            <p>also move the logo from left corner to right and navigation a little bit move down</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <template id="page_utemplate-cart">
+    <div class="container min-w-screen cart">
+      <div class="row row-no-padding row-container">
+        <div class="column column-60 u-max60-center column-overflow column-content-scroll">
+          <div class="continaer container-w-5rem">
+            <h1>Cart</h1>
+            <hr>
+            <p>Performing plan upgrade</p>
+            <div class="row">
+              <div class="column">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Chosen plan</th>
+                      <th>Days count</th>
+                      <th>Repayment in</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Enterprise Plan</td>
+                      <td>180 days</td>
+                      <td>10/04/2026</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="column">
+                <div class="row">
+                  <div class="column column-50">
+                    <h5>Total</h5>
+                    14999Y
+                  </div>
+                  <div class="column column-50">
+                    <form>
+                      <div class="float-right">
+                        <input type="checkbox" id="input_cart-auto" required>
+                        <label class="label-inline" for="input_cart-auto">Auto</label>
+                      </div>
+                    </form>
+                  </div>
+
+                </div>
+                <h5>Total</h5>
+              </div>
+            </div>
+            <footer>
+              <p>
+                <qtpl-data></qtpl-data>
+                <span id="supportinfo">
+                  ProjectName &amp; ProjectTeam Support Team : <a
+                    href="https://t.me/support"><strong>Telegram</strong></a>
+                </span>
+              </p>
+            </footer>
+          </div>
+        </div>
+        <div class="column column-33">
+          <div class="continaer container-w-5rem">
+            <h3>TODO</h3>
+            <p>disable all from main page and display only navigation</p>
+            <p>also move the logo from left corner to right and navigation a little bit move down</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <template id="page_utemplate-shrtlist">
+    <div class="container min-w-screen shortenlist">
+      <div class="row row-no-padding row-container">
+        <div class="column column-60 u-max60-center column-overflow column-content-scroll">
+          <div class="continaer container-w-5rem">
+            <h1>Your shorten links</h1>
+            <hr>
+            <div class="row row-no-padding row-column row-shorten">
+              <div class="column">
+                <div class="shorten-cascade">
+                  <article class="article-card article-card--accent">
+                    <div class="container">
+                      <div class="row row-no-padding">
+                        <div class="column column-pad-1rem">
+                          <h4>
+                            sh.trm.sh/X03Fpar1m
+                            <span class="float-right muted subtitle">05.01.2026</span>
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="container">
+                      <div class="row row-no-padding">
+                        <div class="column column-pad-1rem">
+                          <ul class="price-list">
+                            <li>Target: <a
+                                href="https://www.google.com/search?client=ubuntu&channel=fs&q=input+date+only+month+and+year">www.google.com/search?...</a>
+                            </li>
+                            <li>Stats TWMC: 64/2,504/9,234/25,523</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="column">
+                <div class="shorten-cascade">
+                  <article class="article-card article-card--accent">
+                    <div class="container">
+                      <div class="row row-no-padding">
+                        <div class="column column-pad-1rem">
+                          <h4>
+                            sh.trm.sh/X03Fpar1m
+                            <span class="float-right muted subtitle">05.01.2026</span>
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="container">
+                      <div class="row row-no-padding">
+                        <div class="column column-pad-1rem">
+                          <ul class="price-list">
+                            <li>Target: <a
+                                href="https://www.google.com/search?client=ubuntu&channel=fs&q=input+date+only+month+and+year">www.google.com/search?...</a>
+                            </li>
+                            <li>Stats TWMC: 64/2,504/9,234/25,523</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="column">
+                <div class="shorten-cascade">
+                  <article class="article-card article-card--accent">
+                    <div class="container">
+                      <div class="row row-no-padding">
+                        <div class="column column-pad-1rem">
+                          <h4>
+                            sh.trm.sh/X03Fpar1m
+                            <span class="float-right muted subtitle">05.01.2026</span>
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="container">
+                      <div class="row row-no-padding">
+                        <div class="column column-pad-1rem">
+                          <ul class="price-list">
+                            <li>Target: <a
+                                href="https://www.google.com/search?client=ubuntu&channel=fs&q=input+date+only+month+and+year">www.google.com/search?...</a>
+                            </li>
+                            <li>Stats TWMC: 64/2,504/9,234/25,523</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="column">
+                <div class="shorten-cascade">
+                  <article class="article-card article-card--accent">
+                    <div class="container">
+                      <div class="row row-no-padding">
+                        <div class="column column-pad-1rem">
+                          <h4>
+                            sh.trm.sh/AiiX0Ssur
+                            <span class="float-right muted subtitle">01.01.2026</span>
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="container">
+                      <div class="row row-no-padding">
+                        <div class="column column-pad-1rem">
+                          <ul class="price-list">
+                            <li>Target: <a
+                                href="href://github.com/MindHunter86?tab=repositories">github.com/MindHunter86?tab=repositories</a>
+                            </li>
+                            <li>Stats TWMC: 1,200/42,000/150,235/974,233</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="column">
+                <div class="shorten-cascade">
+                  <article class="article-card article-card--accent">
+                    <div class="container">
+                      <div class="row row-no-padding">
+                        <div class="column column-pad-1rem">
+                          <h4>
+                            sh.trm.sh/AiiX0Ssur
+                            <span class="float-right muted subtitle">01.01.2026</span>
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="container">
+                      <div class="row row-no-padding">
+                        <div class="column column-pad-1rem">
+                          <ul class="price-list">
+                            <li>Target: <a
+                                href="href://github.com/MindHunter86?tab=repositories">github.com/MindHunter86?tab=repositories</a>
+                            </li>
+                            <li>Stats TWMC: 1,200/42,000/150,235/974,233</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="column">
+                <div class="shorten-cascade">
+                  <article class="article-card article-card--accent">
+                    <div class="container">
+                      <div class="row row-no-padding">
+                        <div class="column column-pad-1rem">
+                          <h4>
+                            sh.trm.sh/AiiX0Ssur
+                            <span class="float-right muted subtitle">01.01.2026</span>
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="container">
+                      <div class="row row-no-padding">
+                        <div class="column column-pad-1rem">
+                          <ul class="price-list">
+                            <li>Target: <a
+                                href="href://github.com/MindHunter86?tab=repositories">github.com/MindHunter86?tab=repositories</a>
+                            </li>
+                            <li>Stats TWMC: 1,200/42,000/150,235/974,233</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+            <footer>
+              <p>
+                <qtpl-data></qtpl-data>
+                <span id="supportinfo">
+                  ProjectName &amp; ProjectTeam Support Team : <a
+                    href="https://t.me/support"><strong>Telegram</strong></a>
+                </span>
+              </p>
+            </footer>
+          </div>
+        </div>
+        <div class="column column-33">
+          <div class="continaer container-w-5rem">
+            <h3>TODO</h3>
+            <p>disable all from main page and display only navigation</p>
+            <p>also move the logo from left corner to right and navigation a little bit move down</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <template id="page_utemplate-shrtdtls">
+    <div class="container min-w-screen shorten-details">
+      <div class="row row-no-padding row-container">
+        <div class="column column-60 u-max60-center column-overflow column-content-scroll">
+          <div class="continaer container-w-5rem">
+            <h1>Shorten <span class="description">X03Fpar1m</span></h1>
+            <hr>
+            <div class="row row-column row-bpad-1rem row-description">
+              <div class="column column-pad-1rem">
+                <div class="row">
+                  <div class="column columnt-50">
+                    <h3>Details:</h3>
+                    <ul class="description-list">
+                      <li>Direction: XX</li>
+                      <li>Created on: 01 Jan 2026</li>
+                      <li>Status: Active</li>
+                      <li>QR-code: Disabled</li>
+                    </ul>
+                  </div>
+                  <div class="column columnt-50 text-align-right">
+                    <h3>Actions (icons here):</h3>
+                    <ul class="description-list">
+                      <li>Update</li>
+                      <li>Generate QR-code</li>
+                      <li>Reset Stats</li>
+                      <li>Deactivate</li>
+                      <li>Archive</li>
+                      <li>Terminate</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="column column-pad-1rem">
+                <h3>Stats:</h3>
+                <div class="row">
+                  <div class="column">
+                    <h6>Today</h6>
+                    <div><canvas id="acquisitions"></canvas></div>
+                  </div>
+                  <div class="column">
+                    <h6>Yesterday</h6>
+                    <div><canvas id="acquisitions2"></canvas></div>
+                  </div>
+                  <div class="column">
+                    <h6>Last 7d</h6>
+                    <div><canvas id="acquisitions3"></canvas></div>
+                  </div>
+                </div>
+                <div class="row row-desc-stats row-column">
+                  <div class="column">
+                    <h5>By User-Agent</h5>
+                    <div><canvas id="acquisitions5"></canvas></div>
+                  </div>
+                  <div class="column">
+                    <h5>By Operation System</h5>
+                    <div><canvas id="acquisitions6"></canvas></div>
+                  </div>
+                  <div class="column">
+                    <h5>By Region</h5>
+                    <div><canvas id="acquisitions7"></canvas></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <footer>
+              <p>
+                <qtpl-data></qtpl-data>
+                <span id="supportinfo">
+                  ProjectName &amp; ProjectTeam Support Team : <a
+                    href="https://t.me/support"><strong>Telegram</strong></a>
+                </span>
+              </p>
+            </footer>
+          </div>
+        </div>
+        <div class="column column-33">
+          <div class="continaer container-w-5rem">
+            <h3>TODO</h3>
+            <p>disable all from main page and display only navigation</p>
+            <p>also move the logo from left corner to right and navigation a little bit move down</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <noscript>
+    <p>
+      Sadly, you <strong>must enable JavaScript</strong> to get past this challenge. This is required because AI
+      companies
+      have changed the social contract around how website hosting works.
+    </p>
+  </noscript>
+</body>
+
+</html>

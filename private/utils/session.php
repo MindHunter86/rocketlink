@@ -14,8 +14,7 @@ const ROLES_ROLE_ADMIN = 'admin';
 
 function session_is_exists_accounts(): bool
 {
-    if (isset($_SESSION)) return false;
-    return isset($_SESSION[SESSION_ACCOUNT]) === false;
+    return array_key_exists(SESSION_ACCOUNT, $_SESSION);
 }
 
 function session_is_identified(): bool
@@ -46,7 +45,7 @@ function session_is_authorized_by_role(string $role): bool
     return $_SESSION[SESSION_ACCOUNT][SESSION_ACCOUNT_SITEROLE] === $role;
 }
 
-function session_is_authorized_by_id(string $id): bool
+function session_is_authorized_by_id(int $id): bool
 {
     if (!session_is_exists_accounts()) return false;
     if (empty($_SESSION[SESSION_ACCOUNT][SESSION_ACCOUNT_USERID])) return false;

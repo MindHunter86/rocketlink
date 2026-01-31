@@ -20,6 +20,7 @@ $routes = [
         '/debug/session' => 'api_debug_session',
 
         // account users subrouter
+        '/accounts/users/links' => 'api_account_links',
         '/accounts/users/payments' => 'api_account_payments',
         '/accounts/users/orders' => 'api_account_order',
 
@@ -41,6 +42,7 @@ $routes = [
     ],
     'POST' => [
         // account users subrouter
+        '/accounts/users/auth/check' => 'api_account_auth_check',
         '/accounts/users/auth/login' => 'api_account_auth_login',
         '/accounts/users/auth/logout' => 'api_account_auth_logout',
         '/accounts/users/auth/forgot' => 'api_account_auth_forgot',

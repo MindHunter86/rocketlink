@@ -83,7 +83,7 @@ function ensure_schema(): void
     pdo()->exec(
         '
             INSERT INTO accounts (`username`, `password`)
-            VALUES ( "admin", "' . pass_hash('admin') . '")
+            VALUES ( "admin@ex.com", "' . pass_hash('admin') . '")
         ',
     );
 

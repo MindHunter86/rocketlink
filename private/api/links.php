@@ -12,7 +12,7 @@ function api_get_link(array $params = []): void
     if ($id === null) json_response_error('invalid data recevied', 400, 'input data validation was not passed');
     if (empty($id)) json_response_error('invalid data recevied', 400, 'recevied id is not valid');
 
-    $res = db_one('SELECT id,owner FROM links where shortenid=?', [$id]);
+    $res = db_one('SELECT * FROM links where shortenid=?', [$id]);
     if (!$res) json_response_error('requested link not found', 404);
 
     if (!session_is_authenticated() || !session_is_authorized_by_id($res['owner']))

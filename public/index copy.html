@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>School SPA</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <nav>
+    <!-- href реальный (для history). data-route нужен для JS-перехвата -->
+    <a href="/" data-route="home">Главная</a>
+    <a href="/profile" data-route="profile">Профиль</a>
+    <a href="/about" data-route="about">О проекте</a>
+  </nav>
+
+  <main id="app"></main>
+
+  <!-- Шаблоны -->
+  <template id="tpl-home">
+    <section>
+      <h1>Главная</h1>
+      <button data-action="loadPosts">Загрузить посты</button>
+      <ul id="posts"></ul>
+    </section>
+  </template>
+
+  <template id="tpl-profile">
+    <section>
+      <h1>Профиль</h1>
+      <pre id="userBox">—</pre>
+      <button data-action="loadMe">Обновить</button>
+    </section>
+  </template>
+
+  <template id="tpl-about">
+    <section>
+      <h1>О проекте</h1>
+      <p>Текст…</p>
+    </section>
+  </template>
+
+  <template id="tpl-404">
+    <section>
+      <h1>Не найдено</h1>
+      <p>Такого раздела нет.</p>
+    </section>
+  </template>
+
+  <!-- ES Modules, без фреймворков -->
+  <script type="module" src="./app.js"></script>
+</body>
+
+</html>
