@@ -12,11 +12,12 @@ const routeToTpl = {
   login: "page_template-auth",
   logout: "page_template-home",
   links: "page_template-shrtlist",
-  links_detailed: "page_utemplate-shrtdtls",
+  links_detailed: "page_template-shrtdtls",
   "ui-payment": "page_utemplate-addpayment",
   "ui-cart": "page_utemplate-cart",
   "ui-shortenlist": "page_utemplate-shrtlist",
   "ui-shortendtls": "page_utemplate-shrtdtls",
+
   "404": "page_template-404",
 };
 
@@ -26,10 +27,10 @@ const routes = [
   { re: /^\/github$/, view: "github" },
   { re: /^\/login$/, view: "login" },
   { re: /^\/logout$/, view: "logout" },
-  { re: /^\/ui-shortenlist$/, view: "ui-shortenlist" },
-  { re: /^\/ui-shortendtls$/, view: "ui-shortenlist" },
-  { re: /^\/ui-cart$/, view: "ui-cart" },
-  { re: /^\/ui-payment$/, view: "page_utemplate-addpayment" },
+  // { re: /^\/ui-shortenlist$/, view: "ui-shortenlist" },
+  // { re: /^\/ui-shortendtls$/, view: "ui-shortendtls" },
+  // { re: /^\/ui-cart$/, view: "ui-cart" },
+  // { re: /^\/ui-payment$/, view: "page_utemplate-addpayment" },
 
   { re: /^\/links$/, view: "links" },
   { re: /^\/links\/(?<id>[a-zA-Z0-9-]+)$/, view: "links_detailed" },
@@ -54,6 +55,7 @@ export async function render(route, initial = false) {
     if (route.view === "login") await actions.page_login_login();
     else if (route.view === 'logout') await actions.page_login_logout();
     else if (route.view === 'links') await actions.page_shrtlist_list();
+    else if (route.view === 'links_detailed') await actions.page_shrtdtls_details(route.params.id);
     else if (route.view === "profile") await loadMe();
   } catch (e) {
     showError(e);
@@ -118,8 +120,6 @@ export function shortenListPrint(links) {
 function makeShortenListElem(link) {
   const tpl = $("#tpl_shrtlist-card");
   const node = tpl.content.firstElementChild.cloneNode(true);
-
-  console.log(node);
   if (!node) return;
 
   node.querySelector('[data-bind="shortenid"]').textContent = 'trm.sh/' + link.shortenid;
@@ -129,4 +129,15 @@ function makeShortenListElem(link) {
   node.querySelector('[data-bind="shortendst"]').textContent = utils.shortHost(link.destination);
 
   return node;
+}
+
+export function fillShortenDetails(details) {
+  const node = $("#page_shrtdtls-details");
+  if (!node) return;
+
+  node.querySelector('[data-bind="shortenid"]').textContent = details.shortenid;
+  node.querySelector('[data-bind="destination"]').href = details.destination;
+  node.querySelector('[data-bind="destination"]').textContent = utils.shortHost(details.destination);
+  node.querySelector('[data-bind="created_at"]').textContent = utils.formatShortenDate(details.created_at);
+  node.querySelector('[data-bind="updated_at"]').textContent = utils.formatShortenDate(details.created_at);
 }

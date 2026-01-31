@@ -560,6 +560,92 @@
       </div>
     </div>
   </template>
+  <template id="page_template-shrtdtls">
+    <div class="container min-w-screen shorten-details">
+      <div class="row row-no-padding row-container">
+        <div class="column column-60 u-max60-center column-overflow column-content-scroll">
+          <div class="continaer container-w-5rem" id="page_shrtdtls-details">
+            <h1>Shorten <span data-bind="shortenid" class="description">X03Fpar1m</span></h1>
+            <hr>
+            <div class="row row-column row-bpad-1rem row-description">
+              <div class="column column-pad-1rem">
+                <div class="row">
+                  <div class="column columnt-50">
+                    <h3>Details:</h3>
+                    <ul class="description-list">
+                      <li>Direction: <a href="#" data-bind="destination"></a></li>
+                      <li>Created on: <span data-bind="created_at"></span></li>
+                      <li>Last update: <span data-bind="updated_at"></span></li>
+                      <li>Status: Active</li>
+                      <li>QR-code: Disabled</li>
+                    </ul>
+                  </div>
+                  <div class="column columnt-50 text-align-right">
+                    <h3>Actions (icons here):</h3>
+                    <ul class="description-list">
+                      <li>Update</li>
+                      <li>Generate QR-code</li>
+                      <li>Reset Stats</li>
+                      <li>Deactivate</li>
+                      <li>Archive</li>
+                      <li>Terminate</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="column column-pad-1rem">
+                <h3>Stats:</h3>
+                <div class="row">
+                  <div class="column">
+                    <h6>Today</h6>
+                    <div><canvas id="acquisitions"></canvas></div>
+                  </div>
+                  <div class="column">
+                    <h6>Yesterday</h6>
+                    <div><canvas id="acquisitions2"></canvas></div>
+                  </div>
+                  <div class="column">
+                    <h6>Last 7d</h6>
+                    <div><canvas id="acquisitions3"></canvas></div>
+                  </div>
+                </div>
+                <div class="row row-desc-stats row-column">
+                  <div class="column">
+                    <h5>By User-Agent</h5>
+                    <div><canvas id="acquisitions5"></canvas></div>
+                  </div>
+                  <div class="column">
+                    <h5>By Operation System</h5>
+                    <div><canvas id="acquisitions6"></canvas></div>
+                  </div>
+                  <div class="column">
+                    <h5>By Region</h5>
+                    <div><canvas id="acquisitions7"></canvas></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <footer>
+              <p>
+                <qtpl-data></qtpl-data>
+                <span id="supportinfo">
+                  ProjectName &amp; ProjectTeam Support Team : <a
+                    href="https://t.me/support"><strong>Telegram</strong></a>
+                </span>
+              </p>
+            </footer>
+          </div>
+        </div>
+        <div class="column column-33">
+          <div class="continaer container-w-5rem">
+            <h3>TODO</h3>
+            <p>disable all from main page and display only navigation</p>
+            <p>also move the logo from left corner to right and navigation a little bit move down</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
 
   <!-- User's space template pages -->
   <template id="page_utemplate-addpayment">

@@ -137,3 +137,22 @@ export async function page_shrtlist_list() {
             navigate("/");
         });
 }
+
+export async function page_shrtdtls_details(id) {
+    console.log("actions.page - shrtdtls details page loading");
+
+    if (!id) return;
+
+    api(`/links/${id}`, {
+        credentials: 'include',
+    })
+        .then((response) => {
+            if (!response || response.status !== "ok") console.log("API respond with non-parsable object");
+            views.fillShortenDetails(response.data);
+        })
+        .catch((e) => {
+            console.log(e);
+            console.log("API request failure!");
+            navigate("/");
+        });
+}
