@@ -16,6 +16,13 @@ export async function page_initial_loading() {
     else navSwitchLoggedView("false");
 }
 
+export async function page_github_redirect() {
+    console.log("actions.page - github page loading");
+
+    await new Promise(r => setTimeout(() => r(), 300));
+    window.location = 'https://github.com/MindHunter86/';
+}
+
 // TODO : error notification
 export async function page_login_login() {
     console.log("actions.page - login page loading");

@@ -50,7 +50,6 @@ export async function render(route, initial = false) {
   // minimal pre-hooks
   if (route.view === 'links_create') await actions.page_shrtlist_new();
 
-  console.log(route);
   mount(route.view);
   setActiveNav(route.view);
 
@@ -61,7 +60,8 @@ export async function render(route, initial = false) {
 
     if (route.view === "login") await actions.page_login_login();
     else if (route.view === 'logout') await actions.page_login_logout();
-    else if (route.view === 'links') await actions.page_shrtlist_list();
+    else if (route.view === 'logout') await actions.page_login_logout();
+    else if (route.view === 'github') await actions.page_github_redirect();
     else if (route.view === 'links_create') await actions.page_shrtlist_list();
     else if (route.view === 'links_detailed') await actions.page_shrtdtls_details(route.params.id);
     else if (route.view === "profile") await loadMe();
@@ -77,18 +77,15 @@ function matchRoute(pathname) {
   for (const r of routes) {
     const m = path.match(r.re);
     if (m) {
-      console.log(m);
       return { view: r.view, params: m.groups || {} };
     }
   }
-  console.log(pathname);
 
   return { view: "404", params: {} };
 }
 
 export async function navigate(route, replace = false) {
   const match = matchRoute(route);
-  console.log(match);
   const fn = replace ? history.replaceState : history.pushState;
 
   fn.call(history, match, "", route);
